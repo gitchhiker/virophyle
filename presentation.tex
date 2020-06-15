@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% I, the copyright holder of this work, release this work into the
+%% public domain. This applies worldwide. In some countries this may
+%% not be legally possible; if so: I grant anyone the right to use
+%% this work for any purpose, without any conditions, unless such
+%% conditions are required by law.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\documentclass{beamer}
+\usetheme[faculty=ped]{fibeamer}
+\usepackage[utf8]{inputenc}
+\usepackage[main=english, czech, slovak]{babel}
+\makeatletter % remove the FACULTY OF ... MASARYK UNI LOGO
+\renewcommand\fibeamer@includeLogo[1][]{}
+\makeatother
+\title{Phylogenetics for Predicting Virus Evolution}
+\subtitle{Can we anticipate next seasons dominant influenza strain from sequence alignment?}
+\author{Paul Wiesemeyer}
+\usepackage{ragged2e}  % `\justifying` text
+\usepackage{booktabs}  % Tables
+\usepackage{tabularx}
+\usepackage{tikz}      % Diagrams
+\usetikzlibrary{calc, shapes, shapes.geometric, arrows, backgrounds}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange]
+\usepackage{amsmath, amssymb}
+\usepackage{url}       % `\url`s
+\usepackage{listings}  % Code listings
+\frenchspacing
+\begin{document}
+  \shorthandoff{-}
+  \frame{\maketitle}
+
+    \AtBeginSection[]{% Print an outline at the beginning of sections
+  
+        \begin{frame}<beamer>
+          \frametitle{Outline for Section \thesection}
+          \tableofcontents[currentsection]
+        \end{frame}
+    }
+    
+  \begin{darkframes}
+  \section{Motivation}
+    \subsection{Viruses evolve -- but what's the problem?}
+    \subsection{How do we measure virus evolution?}
+    \subsection{But wait!---wouldn't a graph make more sense?}
+  \section{A powerful data synthesis}
+    \subsection{The lab approach to vaccines: HI assay}
+    \subsection{The computer scientist's approach: Sequence alignment}
+    \subsection{Constructing a phylogenetic tree}
+    \subsection{What predictions can we make?}
+  \section{Going forward: the Metadata}
+    \subsection{Visualizing spread and evolution on a world map}
+  \section{Making the project smart: Building a community}
+    \subsection{Public and easy access}
+    \subsection{Tools for contribution}
+
+
+  \end{darkframes}
+
+\end{document}
