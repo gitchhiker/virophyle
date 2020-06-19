@@ -10,6 +10,12 @@ abstract: "This narrative serves the purpose to (i) explore an example dataset, 
 
 These data show something...
 
+```auspiceMainDisplayMarkdown
+# Welcome to the nextstrain tutorial especially for the **Physics of Viruses** Seminar!
+
+
+```
+
 # [The second page](https://nextstrain.org/flu/seasonal/h3n2/ha/2y)
 
 These data show something else (actually they don't)...

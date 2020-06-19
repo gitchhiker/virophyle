@@ -9,6 +9,8 @@
 
 
 \documentclass{beamer}
+
+
 \usetheme[faculty=ped]{fibeamer}
 \usepackage[utf8]{inputenc}
 \usepackage[main=english, czech, slovak]{babel}
@@ -25,9 +27,21 @@
 \usetikzlibrary{calc, shapes, shapes.geometric, arrows, backgrounds}
 \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange]
 \usepackage{amsmath, amssymb}
+
 \usepackage{url}       % `\url`s
 \usepackage{listings}  % Code listings
 \frenchspacing
+
+%\usepackage[backend=biber,style=alphabetic,citestyle=authoryear]{biblatex}
+%\addbibresource{virophyle.bib}
+
+%      \bibliographystyle{unsrt}
+
+%      \bibliography{virophyle}
+
+%\usepackage[plainnat]{natbib}
+
+
 \begin{document}
   \shorthandoff{-}
   \frame{\maketitle}
@@ -62,11 +76,37 @@
     \end{frame}
 
     \subsection{Basics}
+
     \begin{frame}{\subsecname}
       \framesubtitle{Where does influenza come from?}
+      \begin{itemize}
+      \item \textit{Zoonotic events}, the jumping from one species to another.
+      \item \textit{Antigenic shift} events, when different virus types infect the same host cell and recombine their 8 RNA parts.
+      \item \textit{Antigenic drift}, driven by point mutations and \textit{indels}
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{Antigenic shifts and zoonoses can cause pandemics}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/alberts2015molecularp1292.pdf}
-        \caption{taken from CITATION Alberts}
+        \caption{taken from \cite{alberts15}}
+      \end{figure}{}
+    \end{frame}{}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{Antigenic drift---a race}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/nextstrain_flu_seasonal_h3n2_ha_12y.pdf}
+        \caption{\footnotesize From NEXTSTRAIN.org Divergence (= #subs/HA-genome-length)}
+      \end{figure}
+    \end{frame}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{Antigenic drift---a race}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/GTAsa.jpg}
+        \caption{\footnotesize It's like getting more and more stars, having to switch escape vehicle constantly}
       \end{figure}
     \end{frame}
 
@@ -105,6 +145,9 @@
 
 
 
+
+
+
   \section{Phylogenetics}
 
     \begin{frame}{\secname}
@@ -136,6 +179,10 @@
     \subsection{How to use the Framework}
     \begin{frame}{\secname : \subsecname}
       \framesubtitle{(this is mirrored in the narrative)}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/NextstrainPathogens.pdf}
+        \caption{\footnotesize Here, one antiserum is tested in 12 different dilutions against 8 different virus strains. The highest dilution that prevents agglutination is called the titer.}
+      \end{figure}
     \end{frame}
 
     \subsection{The Powerful Metadata}
@@ -153,9 +200,13 @@
     \end{frame}
 
     \begin{frame}{References}
-      \framesubtitle{}
-      \bibliography{phylodynamics.bib}
+\bibliography{virophyle}
+\bibliographystyle{apalike}
+%\printbibliography
     \end{frame}
+
+
+
 
   \end{darkframes}
 
