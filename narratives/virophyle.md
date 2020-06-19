@@ -7,31 +7,33 @@ dataset: "https://nextstrain.org/flu/seasonal/h3n2/ha/12y"
 abstract: ""
 ---
 
-
+<!-- ############ SLIDE BREAK ############# -->
+<!-- This is left-side text -->
 # [On the left you can see the phylogenetic tree, the corresponding map, a divergence histogram and a frequency diagram.](https://nextstrain.org/flu/seasonal/h3n2/ha/12y?branchLabel=none&p=grid)
 
 The dataset is the hemagglutinin (HA) genome of seasonal H3N2 Influenza (type A).
-
+<br><br>
 You can always click on the top right button "EXPLORE THE DATA YOURSELF", and get back to this narrative easily via the same button.
+<br><br>
+Now let us go through the panels one by one.  
 
-Now let us go through the panels one by one.
 
-
-
+<!-- ############ SLIDE BREAK ############# -->
+<!-- This is left-side text -->
 # [The Phylogenetic Tree](https://nextstrain.org/flu/seasonal/h3n2/ha/12y?d=tree&p=full)
 
 The phylogenetic tree is the backbone of the whole nextstrain research.
-
+<br><br>
 It is inferred via sequence alignment and Bayesian maximum likelihood (ML) methods.
-
+<br><br>
 This means, that the dots are known data points, whereas the internal branches come with a confidence interval. Try hovering a branch or a node!
-
+<br><br>
 The coloring is by different clades, the Xs show vaccine strains.
 
-
+<!-- ############ SLIDE BREAK ############# -->
+<!-- This is left-side text -->
 # [The Map](https://nextstrain.org/flu/seasonal/h3n2/ha/12y?d=tree&p=full)
 
 Nextstrain's sequences come with metadata, such as the location and date of the sample.
-
-
-This can be used to create a map, but careful: This does NOT show the number of cases in a certain area. It shows the *number of sampled genomes*, that is it makes a statement about data availability.
+<br><br>
+This can be used to create a map, but careful: This does **not** show the number of cases in a certain area. It shows the _number of sampled genomes_, that is it makes a statement about data availability.
