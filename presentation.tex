@@ -27,6 +27,8 @@
 \usetikzlibrary{calc, shapes, shapes.geometric, arrows, backgrounds}
 \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange]
 \usepackage{amsmath, amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
 
 \usepackage{url}       % `\url`s
 \usepackage{listings}  % Code listings
@@ -98,7 +100,7 @@
       \framesubtitle{Antigenic drift---a race}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/nextstrain_flu_seasonal_h3n2_ha_12y.pdf}
-        \caption{\footnotesize From NEXTSTRAIN.org Divergence (= #subs/HA-genome-length)}
+        \caption{\footnotesize From NEXTSTRAIN.org Divergence (= subs/HA-genome-length)}
       \end{figure}
     \end{frame}
 
@@ -143,8 +145,62 @@
       \end{figure}
     \end{frame}
 
+    \begin{frame}{\subsecname}
+      \framesubtitle{How this used to be looked at}
+      \begin{figure}
+        \centering
+        \begin{subfigure}{.5\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{resources/HItable.png}
+          \caption{A subfigure}
+          \label{fig:sub1}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+          \centering
+          \includegraphics[width=.4\linewidth]{resources/hi_smith_map.jpg}
+          \caption{A subfigure}
+          \label{fig:sub2}
+        \end{subfigure}
+        \caption{A figure with two subfigures}
+        \label{fig:test}
+        \end{figure}
+    \end{frame}
 
+    \begin{frame}{\subsecname}
+      \framesubtitle{}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/HItableToTree.pdf}
+        \caption{\footnotesize Here, one antiserum is tested in 12 different dilutions against 8 different virus strains. The highest dilution that prevents agglutination is called the titer.}
+      \end{figure}
+    \end{frame}
 
+    \begin{frame}{\subsecname}
+      \framesubtitle{}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/HItableToTreeDiffs.pdf}
+        \caption{\footnotesize Here, one antiserum is tested in 12 different dilutions against 8 different virus strains. The highest dilution that prevents agglutination is called the titer.}
+      \end{figure}
+    \end{frame}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/HItableToTreeUru.pdf}
+        \caption{\footnotesize Here, one antiserum is tested in 12 different dilutions against 8 different virus strains. The highest dilution that prevents agglutination is called the titer.}
+      \end{figure}
+    \end{frame}
+
+    \begin{frame}{Multi Scale Evolution}
+      \framesubtitle{}
+      If a single event mutation occurs, say \textbf{D 186 G} in the HA genome, it is subject to multiscale evolutionary selection:
+      \begin{itemize}
+        \item this RNA instance vs. the other RNA strands in the same cell
+        \item this cell's mutated viruses vs. other viruses inside the host
+        \item this hosts viruses vs. viruses in rest of the population
+        \item this population vs. other populations
+      \end{itemize}
+      These scales are difficult to separate. At the population level \textit{epidemiological} processes may dominate.
+    \end{frame}
 
 
 
