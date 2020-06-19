@@ -10,11 +10,14 @@ abstract: ""
 
 # [On the left you can see the phylogenetic tree, the corresponding map, a divergence histogram and a frequency diagram.](https://nextstrain.org/flu/seasonal/h3n2/ha/12y?branchLabel=none&p=grid)
 
-The dataset is the hemagglutinin (HA) genome of seasonal H3N2 Influenza (type A).
+The dataset is the hemagglutinin (HA) genome of seasonal H3N2 Influenza (type A).  
 
-You can always click on the top right button "EXPLORE THE DATA YOURSELF", and get back to this narrative easily via the same button.
 
-Now let us go through the panels one by one.
+You can always click on the top right button "EXPLORE THE DATA YOURSELF", and get back to this narrative easily via the same button.  
+
+
+Now let us go through the panels one by one.  
+
 
 
 
