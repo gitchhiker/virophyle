@@ -33,8 +33,38 @@ The coloring is by different clades, the Xs show vaccine strains.
 
 <!-- ############ SLIDE BREAK ############# -->
 <!-- This is left-side text -->
-# [The Map](https://nextstrain.org/flu/seasonal/h3n2/ha/12y?d=tree&p=full)
+# [The Map](https://nextstrain.org/flu/seasonal/h3n2/ha/12y?d=map&p=full)
 
 Nextstrain's sequences come with metadata, such as the location and date of the sample.
 <br><br>
-This can be used to create a map, but careful: This does **not** show the number of cases in a certain area. It shows the _number of sampled genomes_, that is it makes a statement about data availability.
+These can be used to populate a map with the data from the phylogenetic tree, but careful:
+<br><br>
+The map does **not** show the number of cases in a certain area. It shows the _number of sampled genomes_, that is it makes a statement about data availability.
+
+<!-- ############ SLIDE BREAK ############# -->
+<!-- This is left-side text -->
+# [Tree and Map interplay](https://nextstrain.org/flu/seasonal/h3n2/ha/12y?animate=2010-05-23,2020-04-13,1,0,15000&d=tree,map&p=grid)
+
+We can also watch the unfolding of pathogen evolution having the tree and the map in sync.
+<br><br>
+This is particularly useful for getting a quick overview over a transient situation.
+<br><br>
+
+<!-- ############ SLIDE BREAK ############# -->
+<!-- This is left-side text -->
+# [Diversity in the genome](https://nextstrain.org/flu/seasonal/h3n2/ha/12y?d=tree,map,entropy&p=grid)
+
+Very useful is the panel showing the diversity of the genome at each amino acid (AA) or nucleotide position (NT).
+
+Sites of low diversity are a sign for a crucial region in the genome (for example a receptor binding domain).
+
+The genome can be zoomed and, by clicking a particular site
+
+<!-- ############ SLIDE BREAK ############# -->
+<!-- This is left-side text -->
+# [Frequencies](https://nextstrain.org/flu/seasonal/h3n2/ha/12y?d=tree,map,frequencies&p=grid)
+
+At the <br><br>
+This is particularly useful for getting a quick overview over a transient situation.
+<br><br>
+
