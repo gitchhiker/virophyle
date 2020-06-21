@@ -46,34 +46,73 @@
   \shorthandoff{-}
   \frame{\maketitle}
 
-    \AtBeginSection[]{% Print an outline at the beginning of sections
+    % \AtBeginSection[]{% Print an outline at the beginning of sections
   
-        \begin{frame}<beamer>
-          \frametitle{Outline for Section \thesection}
-          \tableofcontents[currentsection]
-        \end{frame}
-    }
+    %     \begin{frame}<beamer>
+    %       \frametitle{Outline for Section \thesection}
+    %       \tableofcontents[currentsection]
+    %     \end{frame}
+    % }
     
   \begin{darkframes}
+
+
+
+
+  \begin{frame}<beamer>
+    \frametitle{Problem}
+
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[xshift=-4cm,yshift=-2cm] at (current page.north east) {\includegraphics[width=.7\textwidth]{resources/Houston.pdf}};
+    \end{tikzpicture}
+
+    \begin{itemize}
+      \item Influenza evolves rapidly and evades immunity and vaccines
+      \item Estimated $3 - 11 \% $ of the population catch symptomatic influenza each season \cite{tokarsOlsen+18a}
+      \item RNA recombination events can cause sudden epidemics and even pandemics
+      \item Science needs to respond timely to health issues
+    \end{itemize}
+  \end{frame}
+
   \begin{frame}<beamer>
     \frametitle{Problem}
     \begin{itemize}
-      \item Influenza evading immunity
-      \item Pandemics as with SARS-CoV-2
-      \item "Houston, we have aah---CHOO!"
-      \item $3 - 11 \% $ of the population catch symptomatic influenza each season. CITATION
-      \item Influenza mutates quickly at $\sim 2$ mutations / kilobases / year
-      \item No one can tell next seasons circulating influenza strains.
-      \item Antigenic shift can cause sudden epidemics and even pandemics.
-      \item How can we take informed counter measures on a global level?
+      \item About \textit{8 months} from submission to publication of a medical paper \cite{aAMC18}
+      \item About \textit{6 months} from vaccine strain selection to distribution:
     \end{itemize}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{resources/flu_vaccine_schedule.png}
+        \caption{\cite{bedford15}}
+    \end{figure}{}
   \end{frame}
+
+
+
+
+
+  \begin{frame}<beamer>
+           \frametitle{Outline}
+           \footnotesize
+           \tableofcontents
+  \end{frame}
+
+
+
+
+
+
 
   \section{Influenza and Vaccines}
 
     \begin{frame}{\secname}
       \framesubtitle{Influenza---an artful disguise master}
+      \begin{figure}
+        \includegraphics[width=.8\textwidth]{resources/flu-JPG.png}
+        \caption{\footnotesize From NEXTSTRAIN.org Divergence (= subs/HA-genome-length)}
+      \end{figure}
     \end{frame}
+
+
 
     \subsection{Basics}
 
@@ -97,8 +136,8 @@
     \begin{frame}{\subsecname}
       \framesubtitle{Antigenic drift---a race}
       \begin{figure}
-        \includegraphics[width=\textwidth]{resources/nextstrain_flu_seasonal_h3n2_ha_12y.pdf}
-        \caption{\footnotesize From NEXTSTRAIN.org Divergence (= subs/HA-genome-length)}
+        \includegraphics[width=.7\textwidth]{resources/h3n2escape.pdf}
+        \caption{\footnotesize }
       \end{figure}
     \end{frame}
 
@@ -110,7 +149,11 @@
       \end{figure}
     \end{frame}
 
+
+
+
     \subsection{The Hemagglutination Inhibition Assay}
+
     \begin{frame}{\subsecname}
       \framesubtitle{}
       \begin{figure}
@@ -188,6 +231,7 @@
       \end{figure}
     \end{frame}
 
+
     \begin{frame}{Multi Scale Evolution}
       \framesubtitle{}
       If a single event mutation occurs, say \textbf{D 186 G} in the HA genome, it is subject to multiscale evolutionary selection:
@@ -199,6 +243,84 @@
       \end{itemize}
       These scales are difficult to separate. At the population level \textit{epidemiological} processes may dominate.
     \end{frame}
+
+
+
+
+
+
+
+
+
+
+  \section{Predicting the next strain of influenza}
+
+  \subsection{Results}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{cumulative antigenic change}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/neher+16/cumulative_antigenic_change.pdf}
+        \caption{\footnotesize a}
+      \end{figure}
+    \end{frame}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{tree model}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/neher+16/tree_model.pdf}
+        \caption{\footnotesize a}
+      \end{figure}
+    \end{frame}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{tree model hist}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/neher+16/tree_model_hist.pdf}
+        \caption{\footnotesize a}
+      \end{figure}
+    \end{frame}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{recent antigenic evolution}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/neher+16/recent_antigenic_evolution.pdf}
+        \caption{\footnotesize a}
+      \end{figure}
+    \end{frame}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{fraction frequency threshold colourbar}
+      \begin{figure}
+        \includegraphics[width=.8\textwidth]{resources/neher+16/fraction_frequency_threshold_colourbar.pdf}
+        \caption{\footnotesize a}
+      \end{figure}
+    \end{frame}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{distance to season year}
+      \begin{figure}
+        \includegraphics[width=.8\textwidth]{resources/neher+16/distance_to_season_year.pdf}
+        \caption{\footnotesize a}
+      \end{figure}
+    \end{frame}
+
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{years antigenic advance}
+      \begin{figure}
+        \includegraphics[width=.7\textwidth]{resources/neher+16/years_antigenic_advance.pdf}
+        \caption{\footnotesize a}
+      \end{figure}
+    \end{frame}
+
+
+
+
+
+
+
+
 
 
 
@@ -253,7 +375,8 @@
       \framesubtitle{...and why \textit{Nextstrain} is awesome}
     \end{frame}
 
-    \begin{frame}{References}
+    \begin{frame}[allowframebreaks]{References}
+    \tiny
 \bibliography{virophyle}
 \bibliographystyle{apalike}
 %\printbibliography
