@@ -9,6 +9,7 @@
 
 
 \documentclass{beamer}
+\setbeamertemplate{caption}[numbered]
 
 
 \usetheme[faculty=ped]{fibeamer}
@@ -18,7 +19,7 @@
 \renewcommand\fibeamer@includeLogo[1][]{}
 \makeatother
 \title{Phylogenetics for Predicting Virus Evolution}
-\subtitle{Can we anticipate next seasons dominant influenza strain from sequence alignment?}
+\subtitle{Anticipating next seasons influenza strains}
 \author{Paul Wiesemeyer}
 \usepackage{ragged2e}  % `\justifying` text
 \usepackage{booktabs}  % Tables
@@ -67,18 +68,19 @@
     \end{tikzpicture}
 
     \begin{itemize}
-      \item Influenza evolves rapidly and evades immunity and vaccines
+      \itemsep1em
       \item Estimated $3 - 11 \% $ of the population catch symptomatic influenza each season \cite{tokarsOlsen+18a}
-      \item RNA recombination events can cause sudden epidemics and even pandemics
-      \item Science needs to respond timely to health issues
+      \item Influenza evolves rapidly and evades immunity and vaccines
+      \item Epidemics and pandemics caused by RNA recombination events
+      \item Science is slow responding to health issues
     \end{itemize}
   \end{frame}
 
   \begin{frame}<beamer>
     \frametitle{Problem}
     \begin{itemize}
-      \item About \textit{8 months} from submission to publication of a medical paper \cite{aAMC18}
-      \item About \textit{6 months} from vaccine strain selection to distribution:
+      \item $\sim$ \textit{8 months} from submission to publication of a medical paper \cite{aAMC18}
+      \item $\sim$ \textit{6 months} from vaccine strain selection to distribution:
     \end{itemize}
     \begin{figure}
         \includegraphics[width=\textwidth]{resources/flu_vaccine_schedule.png}
@@ -102,55 +104,121 @@
 
 
 
-  \section{Influenza and Vaccines}
+  \section{Influenza}
 
     \begin{frame}{\secname}
-      \framesubtitle{Influenza---an artful disguise master}
-      \begin{figure}
-        \includegraphics[width=.8\textwidth]{resources/flu-JPG.png}
-        \caption{\footnotesize From NEXTSTRAIN.org Divergence (= subs/HA-genome-length)}
-      \end{figure}
+      \framesubtitle{---a closer look}
+      \begin{tikzpicture}
+        \usebeamercolor{fibeamer}
+        \node [anchor=west] (rna) at (-1,6.5) {\footnotesize 8 single stranded RNA};
+        \node [anchor=west] (ha) at (-1,1) {\footnotesize Hemagglutinin (HA)};
+        \node [anchor=west] (na) at (-1,3) {\footnotesize Neuraminidase (NA)};
+        \begin{scope}[xshift=1.5cm]
+          \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.8\textwidth]{resources/flu-JPG.png}};
+          \begin{scope}[x={(image.south east)},y={(image.north west)}]
+            \draw [-latex, thick, orange] (rna) to[out=0, in=150] (0.48,0.90);
+            \draw [-latex, thick, orange] (ha) -- ++(0.70,0.0);
+            \draw [-latex, thick, orange] (na) -- ++(0.4,0.0);
+          \end{scope}
+        \end{scope}
+      \end{tikzpicture}
+      % \begin{figure}
+      %   \includegraphics[width=.8\textwidth]{resources/flu-JPG.png}
+      %   \caption{\footnotesize \cite{cDC20}}
+      % \end{figure}
     \end{frame}
 
 
 
-    \subsection{Basics}
 
-    \begin{frame}{\subsecname}
-      \framesubtitle{Where does influenza come from?}
-      \begin{itemize}
-      \item \textit{Host switch events}, the jumping from one species to another.
-      \item \textit{Antigenic shift} events, when different virus types infect the same host cell and recombine their 8 RNA parts.
-      \item \textit{Antigenic drift}, driven by point mutations and \textit{indels}
-      \end{itemize}
-    \end{frame}
-
-    \begin{frame}{\subsecname}
-      \framesubtitle{Antigenic shifts and zoonoses can cause pandemics}
+    \begin{frame}{\secname}
+      \framesubtitle{---the recent history}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/alberts2015molecularp1292.pdf}
         \caption{taken from \cite{alberts15}}
       \end{figure}{}
     \end{frame}{}
 
-    \begin{frame}{\subsecname}
-      \framesubtitle{Antigenic drift---a race}
+    \begin{frame}{\secname}
+      \framesubtitle{---the phylogeny}
       \begin{figure}
         \includegraphics[width=.7\textwidth]{resources/h3n2escape.pdf}
         \caption{\footnotesize }
       \end{figure}
     \end{frame}
 
-    \begin{frame}{\subsecname}
-      \framesubtitle{Antigenic drift---a race}
+    \begin{frame}{\secname}
+      \framesubtitle{A virus that does not change escape vehicle will get caught}
       \begin{figure}
-        \includegraphics[width=\textwidth]{resources/GTAsa.jpg}
+        \includegraphics[width=.9\textwidth]{resources/GTAsa.jpg}
         \caption{\footnotesize It's like getting more and more stars, having to switch escape vehicle constantly}
       \end{figure}
     \end{frame}
 
 
 
+
+  \section{Phylogenetics}
+
+    \begin{frame}{\secname}
+      \framesubtitle{An old idea}
+      Haeckel, Darwin
+    \end{frame}
+
+    \subsection{The Molecular Clock}
+
+    \begin{frame}{\secname}
+      \framesubtitle{Concept: \subsecname}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/molClock1.pdf}
+        \caption{\footnotesize Linear time-mutation relationship}
+      \end{figure}
+    \end{frame}
+
+
+    \begin{frame}{\secname}
+      \framesubtitle{Concept: \subsecname}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/molClock2.pdf}
+        \caption{\footnotesize Linear time-mutation relationship}
+      \end{figure}
+      \vspace*{-.2cm}
+      Corroborated by genetic equidistance.
+
+      Limited by complete turnover time.
+    \end{frame}
+
+    \subsection{Sequence Alignment}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{An example algorithm}
+
+    \end{frame}
+
+    \subsection{Inferring the tree}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{Basic Principles}
+
+      Parsimony --- Ockhams razor, Cost function
+
+    \end{frame}
+
+    \subsection{Predicting Virus Evolution}
+
+    \begin{frame}
+      \framesubtitle{Approaches}
+
+      Epidemiological: Is there a geographical region?
+
+      Genealogical: Is there a certain type of Mutation?
+
+      Immunological: Hemagglutinin inhibition cartography
+
+      (Denote the scales here: Molecule/Cell/Population)
+
+      Vision: Bring these levels together
+    \end{frame}
 
     \subsection{The Hemagglutination Inhibition Assay}
 
@@ -159,6 +227,7 @@
       \begin{figure}
         \includegraphics[width=.7\textwidth]{resources/hemagglutination.pdf}
         \caption{Red blood cells (RBC) precipitate.}
+        \label{1}
       \end{figure}
     \end{frame}
 
@@ -211,7 +280,7 @@
       \framesubtitle{}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/HItableToTree.pdf}
-        \caption{\footnotesize Here, one antiserum is tested in 12 different dilutions against 8 different virus strains. The highest dilution that prevents agglutination is called the titer.}
+        \caption{\footnotesize Mapping the chart to the tree constructed from sequences}
       \end{figure}
     \end{frame}
 
@@ -239,18 +308,42 @@
       \end{figure}
     \end{frame}
 
-
-    \begin{frame}{Multi Scale Evolution}
+    \begin{frame}[allowframebreaks]{Formulas}
       \framesubtitle{}
-      If a single event mutation occurs, say \textbf{D 186 G} in the HA genome, it is subject to multi scale evolutionary selection:
-      \begin{itemize}
-        \item this RNA instance vs. the other RNA strands in the same cell
-        \item this cell's mutated viruses vs. other viruses inside the host
-        \item this hosts viruses vs. viruses in rest of the population
-        \item this population vs. other populations
-      \end{itemize}
-      These scales are difficult to separate. At the population level \textit{epidemiological} processes may dominate.
+      $T_{a\beta}~\ $........................... HI titer of virus $a$ against antiserum $\beta$ (virus $b$)
+
+      $H_{a\beta}~$........................... $\log_2$ relative titer (we'll use this one)
+      \begin{align}
+        H_{a\beta} = \log_2 ~ T_{b\beta} - \log_2 ~ T_{a\beta}
+      \end{align}
+
+      $\hat{H}_{a\beta}~$........................... predicted $\log_2$ relative titer
+      $v_{a}~~~$........................... avidity of virus $a$ (=greediness)
+      $p_{\beta}~~~$........................... potency of antiserum $\beta$ (=effectiveness)
+      $D_{a\beta}~$........................... genetic component of titer drop
+
+      \begin{align}
+        \hat{H}_{a\beta} = v_a + p_\beta + D_{ab}
+      \end{align}
+
+
+      What remains is split up into a sum over individual mutation contributions:
+      \begin{align}
+        D_{ab} = \sum_{i \in (a ... b)} d_i
+      \end{align}
+      Where the sum is over the path connecting virus $a$ and virus $ b \stackrel{}={}$ antiserum $\beta$. Now we want
+      \begin{align}
+        \hat{H}_{a\beta} \stackrel{!}={} {H}_{a\beta}
+      \end{align}
+      so we minimize a cost function $C$ of the whole tree:
+      \begin{align}
+        C := \sum_{a,\beta}( \hat{H}_{a\beta} - {H}_{a\beta})^2 + \lambda \sum_i d_i + \gamma \sum_a v_a^2 + \delta \sum_\alpha p_\alpha^2
+      \end{align}
+
     \end{frame}
+
+
+
 
 
 
@@ -265,13 +358,7 @@
 
   \subsection{Results}
 
-    \begin{frame}{\subsecname}
-      \framesubtitle{cumulative antigenic change}
-      \begin{figure}
-        \includegraphics[width=\textwidth]{resources/neher+16/cumulative_antigenic_change.pdf}
-        \caption{\footnotesize a}
-      \end{figure}
-    \end{frame}
+
 
     \begin{frame}{\subsecname}
       \framesubtitle{tree model}
@@ -306,6 +393,14 @@
     \end{frame}
 
     \begin{frame}{\subsecname}
+      \framesubtitle{cumulative antigenic change}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{resources/neher+16/cumulative_antigenic_change.pdf}
+        \caption{\footnotesize a}
+      \end{figure}
+    \end{frame}
+    
+    \begin{frame}{\subsecname}
       \framesubtitle{distance to season year}
       \begin{figure}
         \includegraphics[width=.8\textwidth]{resources/neher+16/distance_to_season_year.pdf}
@@ -329,46 +424,6 @@
 
 
 
-
-
-
-  \section{Phylogenetics}
-
-    \begin{frame}{\secname}
-      \framesubtitle{An old idea}
-    \end{frame}
-
-    \subsection{The Molecular Clock}
-    \begin{frame}{\secname : \subsecname}
-      \framesubtitle{}
-      \begin{figure}
-        \includegraphics[width=\textwidth]{resources/molClock1.pdf}
-        \caption{\footnotesize }
-      \end{figure}
-    \end{frame}
-
-    \subsection{The Molecular Clock}
-    \begin{frame}{\secname : \subsecname}
-      \framesubtitle{}
-      \begin{figure}
-        \includegraphics[width=\textwidth]{resources/molClock2.pdf}
-        \caption{\footnotesize Linear time-mutation relationship}
-      \end{figure}
-      \vspace*{-.2cm}
-      Corroborated by genetic equidistance.
-
-      Limited by complete turnover times.
-    \end{frame}
-
-    \subsection{Sequence Alignment}
-    \begin{frame}{\secname : \subsecname}
-      \framesubtitle{}
-    \end{frame}
-
-    \subsection{Building A Phylogenetic Tree}
-    \begin{frame}{\secname : \subsecname}
-      \framesubtitle{---from sequenced data}
-    \end{frame}
 
   \section{\textit{Nextstrain}}
 
@@ -394,6 +449,18 @@
     \subsection{Confidence Levels and Limitations}
     \begin{frame}{\secname : \subsecname}
       \framesubtitle{(this is mirrored in the narrative)}
+    \end{frame}
+
+    \begin{frame}{Multi Scale Evolution}
+      \framesubtitle{}
+      If a single event mutation occurs, say \textbf{D 186 G} in the HA genome, it is subject to multi scale evolutionary selection:
+      \begin{itemize}
+        \item this RNA instance vs. the other RNA strands in the same cell
+        \item this cell's mutated viruses vs. other viruses inside the host
+        \item this hosts viruses vs. viruses in rest of the population
+        \item this population vs. other populations
+      \end{itemize}
+      These scales are difficult to separate. At the population level \textit{epidemiological} processes may dominate.
     \end{frame}
 
     \begin{frame}{Conclusion}
