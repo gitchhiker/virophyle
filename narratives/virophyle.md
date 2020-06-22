@@ -68,3 +68,11 @@ At the <br><br>
 This is particularly useful for getting a quick overview over a transient situation.
 <br><br>
 
+<!-- ############ SLIDE BREAK ############# -->
+<!-- This is left-side text -->
+# [COVID](https://nextstrain.org/ncov?d=tree,map,frequencies&p=grid)
+
+At the <br><br>
+This is particularly useful for getting a quick overview over a transient situation.
+<br><br>
+

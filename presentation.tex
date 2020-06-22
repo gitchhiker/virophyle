@@ -107,7 +107,7 @@
   \section{Influenza}
 
     \begin{frame}{\secname}
-      \framesubtitle{---a closer look}
+      \framesubtitle{a closer look}
       \begin{tikzpicture}
         \usebeamercolor{fibeamer}
         \node [anchor=west] (rna) at (-1,6.5) {\footnotesize 8 single stranded RNA};
@@ -132,7 +132,8 @@
 
 
     \begin{frame}{\secname}
-      \framesubtitle{---the recent history}
+      \framesubtitle{the recent history}
+      \tiny recent in sense of "blink of an eye" on evo scales
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/alberts2015molecularp1292.pdf}
         \caption{taken from \cite{alberts15}}
@@ -140,7 +141,7 @@
     \end{frame}{}
 
     \begin{frame}{\secname}
-      \framesubtitle{---the phylogeny}
+      \framesubtitle{the phylogeny}
       \begin{figure}
         \includegraphics[width=.7\textwidth]{resources/h3n2escape.pdf}
         \caption{\footnotesize }
@@ -158,11 +159,34 @@
 
 
 
+
+
+
   \section{Phylogenetics}
 
     \begin{frame}{\secname}
       \framesubtitle{An old idea}
       Haeckel, Darwin
+
+      Tree is simply connected graph, has parents and children, can be rooted/unrooted
+
+      clade means just any collection of branches, usually monophyletic: all children included
+
+      "leaves"
+    \end{frame}
+
+
+
+    \begin{frame}{\secname}
+
+      \framesubtitle{Concept: Parsimony}
+
+      Plot of tree
+
+      Ockhams razor
+
+      Cost function, sth. to minimize
+
     \end{frame}
 
     \subsection{The Molecular Clock}
@@ -183,42 +207,54 @@
         \caption{\footnotesize Linear time-mutation relationship}
       \end{figure}
       \vspace*{-.2cm}
+      \footnotesize
       Corroborated by genetic equidistance.
 
-      Limited by complete turnover time.
+      Limited by complete turnover time. (?!) synonymous/non-synonymous, point-mut. indels
     \end{frame}
 
     \subsection{Sequence Alignment}
 
-    \begin{frame}{\subsecname}
-      \framesubtitle{An example algorithm}
+    \begin{frame}{\secname}
+      \framesubtitle{Example algorithm: \subsecname}
+
+      N sequences of lengths $n_1 ... n_N$ (not same due to indels, seq. errors)
+
+      Pairwise matching, give a score, make N x N table
+
+      Best matches go together, form new "sequence"
+
+      Iterate. When comparing to sets of sequences, use mean.
 
     \end{frame}
 
-    \subsection{Inferring the tree}
 
-    \begin{frame}{\subsecname}
-      \framesubtitle{Basic Principles}
 
-      Parsimony --- Ockhams razor, Cost function
 
-    \end{frame}
+
+
+  \section{Predicting the next strain of influenza}
+
+
 
     \subsection{Predicting Virus Evolution}
 
-    \begin{frame}
+    \begin{frame}{\secname}
       \framesubtitle{Approaches}
 
-      Epidemiological: Is there a geographical region?
+      Epidemiological: Is there a geographical region? PLOT/Picture?
 
-      Genealogical: Is there a certain type of Mutation?
+      Genealogical: Is there a certain type of Mutation? KOEL 7
 
       Immunological: Hemagglutinin inhibition cartography
 
-      (Denote the scales here: Molecule/Cell/Population)
+      (Denote the scales here: Molecule/Cell/Population and that they couple)
 
       Vision: Bring these levels together
     \end{frame}
+
+
+
 
     \subsection{The Hemagglutination Inhibition Assay}
 
@@ -243,7 +279,7 @@
       \framesubtitle{}
       \begin{figure}
         \includegraphics[width=.7\textwidth]{resources/hemagglutinationInhibitionAssay.pdf}
-        \caption{Antisera of the same \textit{serotype} clump the HA, letting the RBC sink to the bottom. This is an (antiserum) concentration dependent process.}
+        \caption{Antisera that fit the HA's epitope site bind it, letting the RBC sink to the bottom. Effect works up to a certain antigenic distance and .}
       \end{figure}
     \end{frame}
 
@@ -301,9 +337,9 @@
     \end{frame}
 
     \begin{frame}{\subsecname}
-      \framesubtitle{\small The asymmetry makes sense, think of it like this but with more dmensions}
+      \framesubtitle{\small The asymmetry makes sense, think of it like this but with more dimensions}
       \begin{figure}
-        \includegraphics[width=.7\textwidth]{resources/shapesOfWood.jpg}
+        \includegraphics[width=.58\textwidth]{resources/shapesOfWood.jpg}
         \caption{\footnotesize \cite{rosipaw10}}
       \end{figure}
     \end{frame}
@@ -314,7 +350,7 @@
 
       $H_{a\beta}~$........................... $\log_2$ relative titer (we'll use this one)
       \begin{align}
-        H_{a\beta} = \log_2 ~ T_{b\beta} - \log_2 ~ T_{a\beta}
+        H_{a\beta} = \log_2 (T_{b\beta}) ~ - ~\log_2 ( T_{a\beta})
       \end{align}
 
       $\hat{H}_{a\beta}~$........................... predicted $\log_2$ relative titer
@@ -323,7 +359,7 @@
       $D_{a\beta}~$........................... genetic component of titer drop
 
       \begin{align}
-        \hat{H}_{a\beta} = v_a + p_\beta + D_{ab}
+        \hat{H}_{a\beta} = v_a + p_\beta + D_{ab} \text{D is between two viruses}
       \end{align}
 
 
@@ -354,22 +390,23 @@
 
 
 
-  \section{Predicting the next strain of influenza}
 
   \subsection{Results}
 
 
 
     \begin{frame}{\subsecname}
-      \framesubtitle{tree model}
+      \framesubtitle{Omitting 10\% of the HI titer data, to make a test}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/neher+16/tree_model.pdf}
-        \caption{\footnotesize a}
+        \caption{\footnotesize On left, 10\% randomly picked measurements were omitted,\
+
+        on right, 10 \% of the titer columns were held back, as if it was a new virus}
       \end{figure}
     \end{frame}
 
     \begin{frame}{\subsecname}
-      \framesubtitle{tree model hist}
+      \framesubtitle{Asymmetry not interesting, but maybe quartet rule?}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/neher+16/tree_model_hist.pdf}
         \caption{\footnotesize a}
@@ -377,15 +414,31 @@
     \end{frame}
 
     \begin{frame}{\subsecname}
-      \framesubtitle{recent antigenic evolution}
+      \framesubtitle{Does recent antigenic evolution have fixation implications?}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/neher+16/recent_antigenic_evolution.pdf}
-        \caption{\footnotesize a}
+        \caption{\footnotesize Fraction of samples having a certain mutation plotted vs. time
+
+        Strains with frequencies smaller than $0.01$ were omitted.}
       \end{figure}
     \end{frame}
 
     \begin{frame}{\subsecname}
-      \framesubtitle{fraction frequency threshold color bar}
+      \framesubtitle{thresholds}
+      \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-4cm,yshift=-1.5cm] at (current page.north east) {\includegraphics[width=.7\textwidth]{resources/neher+16/recent_antigenic_evolution.pdf}};
+      \end{tikzpicture}
+      \begin{figure}
+        \includegraphics[width=.65\textwidth]{resources/h3n2escape.pdf}
+        \caption{\footnotesize GET nextstrain tree with trunk colored according to antigenic advance}
+      \end{figure}
+    \end{frame}
+
+    \begin{frame}{\subsecname}
+      \framesubtitle{thresholds}
+      \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-4cm,yshift=-1.5cm] at (current page.north east) {\includegraphics[width=.7\textwidth]{resources/neher+16/recent_antigenic_evolution.pdf}};
+      \end{tikzpicture}
       \begin{figure}
         \includegraphics[width=.8\textwidth]{resources/neher+16/fraction_frequency_threshold_colourbar.pdf}
         \caption{\footnotesize a}
@@ -399,7 +452,7 @@
         \caption{\footnotesize a}
       \end{figure}
     \end{frame}
-    
+
     \begin{frame}{\subsecname}
       \framesubtitle{distance to season year}
       \begin{figure}
@@ -429,7 +482,17 @@
 
     \begin{frame}{\secname}
       \framesubtitle{Mending pieces together}
-      Please visit nextstrain.org/narratives/
+      Please visit nextstrain.org/narratives/.....
+
+      Ideas: COVID-Line? H3N2-Line?
+
+      Multiple data sets?
+
+      de Vries Epitope sites
+
+      Koel 7 sites
+
+      D614G --- Epidemiologic turning point
     \end{frame}
 
     \subsection{How to use the Framework}
@@ -463,8 +526,17 @@
       These scales are difficult to separate. At the population level \textit{epidemiological} processes may dominate.
     \end{frame}
 
-    \begin{frame}{Conclusion}
-      \framesubtitle{...and why \textit{Nextstrain} is awesome}
+    \begin{frame}{Outlook}
+      \framesubtitle{and closing remarks}
+      \begin{itemize}
+        \item Difficult to disentangle levels, therefore integrate visualization
+        \item Include more meta data (symptoms, severity, \& c.)
+        \item Interesting: larger evolutionary timescale
+        \item Include other pathogens, like bacteria, CAVEAT: HGT
+        \item My question: what happens if epidemic threshold is crossed even further, and zoonotic forcing is stronger?
+        \item nice to see instance of Red Queen Hypothesis
+        \item Transparency and Community building very important!
+      \end{itemize}
     \end{frame}
 
     \begin{frame}[allowframebreaks]{References}
