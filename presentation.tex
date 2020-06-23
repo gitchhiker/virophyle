@@ -71,7 +71,7 @@
     \begin{itemize}
       \itemsep1em
       \item Estimated $3 - 11 \% $ of the population catch symptomatic influenza each season \cite{tokarsOlsen+18a}
-      \item Influenza evolves rapidly, evading immune system recognition and vaccines
+      \item Influenza evolves rapidly, evading immune system recognition
       \item Epidemics and pandemics caused by RNA recombination events
       \item Science is slow responding to health issues
     \end{itemize}
@@ -88,7 +88,7 @@
         \caption{\footnotesize from \cite{bedford15}}
     \end{figure}{}
     \begin{itemize}
-      \item compare: {\LARGE $\sim 1.6$ \textit{days}} doubling time of H1N1 (2009) \\
+      \item compare: {\LARGE $\sim 1.6$ \textit{days}} doubling time of A/H1N1 (2009) \\
       \footnotesize \cite{mostaco-GuidolinGreer+11}
     \end{itemize}
     
@@ -258,9 +258,7 @@
       \end{figure}
       \vspace*{-.6cm}
       \footnotesize
-      Probability of s.c. \textit{silent} mutations can be taken constant.
-
-      \textit{Non-silent}---amino acid changing---mutations are under evolutionary pressure.
+      Distinguish between \textit{silent} and \textit{non-silent}---amino acid changing---mutations, the latter are under evolutionary pressure.
     \end{frame}
 
 
@@ -271,10 +269,10 @@
 
 
 
-    \subsection{Predicting Virus Evolution}
+    \subsection{Approaches}
 
     \begin{frame}{\secname}
-      \framesubtitle{Approaches}
+      \framesubtitle{\subsecname}
 
       \begin{tikzpicture}[remember picture,overlay]
         \node[xshift=-2.9cm,yshift=-3.4cm] at (current page.north east) {\includegraphics[width=.5\textwidth]{resources/koel7.pdf}};
@@ -319,7 +317,7 @@
       \framesubtitle{}
       \begin{figure}
         \includegraphics[width=.7\textwidth]{resources/hemagglutinationInhibitionAssay.pdf}
-        \caption{Antisera that fit the HA's epitope site bind to it, letting the RBC sink to the bottom. Effect works up to a certain antigenic distance and sntiserum concentration.}
+        \caption{Antisera that fit the HA's epitope site bind to it, letting the RBC sink to the bottom. Effect works up to a certain antigenic distance and antiserum concentration.}
       \end{figure}
     \end{frame}
 
@@ -521,9 +519,13 @@
         \vspace*{-.2cm}
         \caption{\footnotesize }
       \end{figure}
+      \begin{tikzpicture}[remember picture,overlay]
+        \node [anchor=west] (cdc) at (-.8,-3.6) {\footnotesize \cite{leeMoncla+20}};
+
+      \end{tikzpicture}
     \end{frame}
 
-    \subsection{Narrative}
+    \subsection{Hands-On with the Narrative}
 
     \begin{frame}{\secname --- \subsecname}
       \framesubtitle{}
@@ -532,29 +534,15 @@
 
     \section{Outlook}
 
-    \begin{frame}{Multi Scale Evolution}
-      \framesubtitle{}
-      If a single event mutation occurs, say \textbf{D 186 G} in the HA genome, it is subject to multi scale evolutionary selection:
-      \begin{itemize}
-        \item this RNA instance vs. the other RNA strands in the same cell
-        \item this cell's mutated viruses vs. other viruses inside the host
-        \item this hosts viruses vs. viruses in rest of the population
-        \item this population vs. other populations
-      \end{itemize}
-      These scales are difficult to separate. At the population level \textit{epidemiological} processes may dominate.
-    \end{frame}
-
     \begin{frame}{Outlook}
       \framesubtitle{and closing remarks}
       \begin{itemize}
         \item Difficult to disentangle levels, therefore integrate visualization
         \item Include more meta data (symptoms, severity, \& c.)
         \item Interesting: larger evolutionary timescale
-        \item Include other pathogens, like bacteria, CAVEAT: HGT
-        \item My question: what happens if epidemic threshold is crossed even further, and zoonotic forcing is stronger?
-        \item nice to see instance of Red Queen Hypothesis
-        \item Transparency and Community building very important!
-        \item When you find literature on phylodynamics, often animals, but to me this is more difficult.
+        \item Include other pathogens, like bacteria, but careful: HGT
+        \item Nice to see instance of Red Queen Hypothesis
+        \item The nextstrain workings were very transparent and user friendly.
       \end{itemize}
     \end{frame}
 

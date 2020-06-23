@@ -1,5 +1,5 @@
 ---
-title: "Welcome to the test narrative for the Physics of Viruses seminar. We will get familiar with most of the panels on the right side. Please HOVER YOUR MOUSE HERE and scroll down, or press the down arrow."
+title: "Welcome to the test narrative for the Physics of Viruses seminar.                                        We will get familiar with most of the panels on the right side.                                         Please HOVER YOUR MOUSE HERE and scroll down, or press the down arrow."
 authors: "Paul Wiesemeyer"
 affiliations: "pwieseme@iup.uni-heidelberg.de"
 date: "June 23, 2018"
