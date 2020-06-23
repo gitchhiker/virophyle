@@ -29,7 +29,7 @@
 \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange]
 \usepackage{amsmath, amssymb}
 
-\usepackage{url}       % `\url`s
+\usepackage{hyperref}       % `\url`s
 \usepackage{listings}  % Code listings
 \frenchspacing
 
@@ -41,6 +41,7 @@
 %      \bibliography{virophyle}
 
 %\usepackage[plainnat]{natbib}
+
 
 
 \begin{document}
@@ -108,53 +109,51 @@
 
     \begin{frame}{\secname}
       \framesubtitle{a closer look}
+
       \begin{tikzpicture}
         \usebeamercolor{fibeamer}
         \node [anchor=west] (rna) at (-1,6.5) {\footnotesize 8 single stranded RNA};
         \node [anchor=west] (ha) at (-1,1) {\footnotesize Hemagglutinin (HA)};
         \node [anchor=west] (na) at (-1,3) {\footnotesize Neuraminidase (NA)};
+        \node [anchor=west] (cdc) at (-1,0) {\footnotesize Image from \cite{cDC20}};
         \begin{scope}[xshift=1.5cm]
           \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.8\textwidth]{resources/flu-JPG.png}};
           \begin{scope}[x={(image.south east)},y={(image.north west)}]
             \draw [-latex, thick, orange] (rna) to[out=0, in=150] (0.48,0.90);
-            \draw [-latex, thick, orange] (ha) -- ++(0.70,0.0);
-            \draw [-latex, thick, orange] (na) -- ++(0.4,0.0);
+            \draw [-latex, thick, orange] (ha) -- ++(0.64,0.0);
+            \draw [-latex, thick, orange] (na) -- ++(0.34,0.0);
           \end{scope}
         \end{scope}
       \end{tikzpicture}
-      % \begin{figure}
-      %   \includegraphics[width=.8\textwidth]{resources/flu-JPG.png}
-      %   \caption{\footnotesize \cite{cDC20}}
-      % \end{figure}
+
     \end{frame}
 
 
-
-
     \begin{frame}{\secname}
-      \framesubtitle{the recent history}
-      \tiny recent in sense of "blink of an eye" on evo scales
+      \framesubtitle{jumps far}
+
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/alberts2015molecularp1292.pdf}
-        \caption{taken from \cite{alberts15}}
+        \caption{Influenza A evolutionary shift events \cite{alberts15}}
       \end{figure}{}
     \end{frame}{}
 
+
     \begin{frame}{\secname}
-      \framesubtitle{the phylogeny}
+      \framesubtitle{runs fast}
       \begin{figure}
         \includegraphics[width=.7\textwidth]{resources/h3n2escape.pdf}
-        \caption{\footnotesize }
+        \caption{\footnotesize Phylogeny of Influenza A/H3N2 Hemagglutinin \cite{volzKoelle+13}}
       \end{figure}
     \end{frame}
 
-    \begin{frame}{\secname}
-      \framesubtitle{A virus that does not change escape vehicle will get caught}
-      \begin{figure}
-        \includegraphics[width=.9\textwidth]{resources/GTAsa.jpg}
-        \caption{\footnotesize It's like getting more and more stars, having to switch escape vehicle constantly}
-      \end{figure}
-    \end{frame}
+    % \begin{frame}{\secname}
+    %   \framesubtitle{A virus that does not change escape vehicle will get caught}
+    %   \begin{figure}
+    %     \includegraphics[width=.9\textwidth]{resources/GTAsa.jpg}
+    %     \caption{\footnotesize It's like getting more and more stars, having to switch escape vehicle constantly}
+    %   \end{figure}
+    % \end{frame}
 
 
 
@@ -165,14 +164,27 @@
   \section{Phylogenetics}
 
     \begin{frame}{\secname}
-      \framesubtitle{An old idea}
-      Haeckel, Darwin
+      \framesubtitle{Terminology}
 
-      Tree is simply connected graph, has parents and children, can be rooted/unrooted
+      \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-1cm,yshift=-1.7cm] at (current page.north east) {\includegraphics[width=\textwidth]{resources/Haeckel.pdf}};
+        \node [anchor=west] (cdc) at (-1,-5.5) {\footnotesize Image from \cite{haeckel66}};
+      \end{tikzpicture}
 
-      clade means just any collection of branches, usually monophyletic: all children included
+      Tree---a simply connected graph
 
-      "leaves"
+      \begin{itemize}
+        \item branches
+
+        \item nodes (vertices)
+
+        \item leaves (endpoints)
+
+        \item root $\Rightarrow$ parents, children
+
+        \item clade---a collection of branches
+
+      \end{itemize}
     \end{frame}
 
 
@@ -181,13 +193,42 @@
 
       \framesubtitle{Concept: Parsimony}
 
-      Plot of tree
+      \begin{figure}
+        \includegraphics[width=.7\textwidth]{resources/parsimony2.pdf}
+        \caption{\footnotesize Reconstructing a tree requires likelihood considerations}
+      \end{figure}
+      \footnotesize
 
-      Ockhams razor
+      Minimize the number of mutations to get the most likely tree(s)\\[1mm]
 
-      Cost function, sth. to minimize
+      Problem: for $n$ leaves, \# possible trees $\propto 2^n\ n !$\\[1mm]
+
+      $\Rightarrow$ We can always just compute a small number of trees
 
     \end{frame}
+
+    \subsection{Sequence Alignment}
+
+    \begin{frame}{\secname}
+      \framesubtitle{Example algorithm: \subsecname}
+
+      \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-2.2cm,yshift=-2.2cm] at (current page.north east) {\includegraphics[width=.4\textwidth]{resources/align.pdf}};
+      \end{tikzpicture}
+      \vfill
+      N sequences of lengths $n_1 ... n_N$ (not same due to indels, seq. errors)
+      \begin{itemize}
+        \item Pairwise matching, give a penalty, make N x N table
+        \item Lowest penalties group together, form new subunit.
+        \item Iterate. When comparing to sets of sequences, use mean.
+      \end{itemize}
+
+      Result: small number of locally most likely trees, not necessarily global maximum.
+
+      Effectively in use today: Markov Chain Monte Carlo "climber"
+
+    \end{frame}
+
 
     \subsection{The Molecular Clock}
 
@@ -197,6 +238,7 @@
         \includegraphics[width=\textwidth]{resources/molClock1.pdf}
         \caption{\footnotesize Linear time-mutation relationship}
       \end{figure}
+      \addtocounter{figure}{-1}
     \end{frame}
 
 
@@ -208,26 +250,8 @@
       \end{figure}
       \vspace*{-.2cm}
       \footnotesize
-      Corroborated by genetic equidistance.
-
-      Limited by complete turnover time. (?!) synonymous/non-synonymous, point-mut. indels
+      Strongly simplified. Different genome sites experience different evolutionary pressure. Say: Silent vs. non-silent, each site in genome can have a different rate. Then it is hard to deduce anything, possible intermediate: Distribution of rates.
     \end{frame}
-
-    \subsection{Sequence Alignment}
-
-    \begin{frame}{\secname}
-      \framesubtitle{Example algorithm: \subsecname}
-
-      N sequences of lengths $n_1 ... n_N$ (not same due to indels, seq. errors)
-
-      Pairwise matching, give a score, make N x N table
-
-      Best matches go together, form new "sequence"
-
-      Iterate. When comparing to sets of sequences, use mean.
-
-    \end{frame}
-
 
 
 
@@ -242,15 +266,21 @@
     \begin{frame}{\secname}
       \framesubtitle{Approaches}
 
-      Epidemiological: Is there a geographical region? PLOT/Picture?
+      \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-2.9cm,yshift=-3.4cm] at (current page.north east) {\includegraphics[width=.5\textwidth]{resources/koel7.pdf}};
+        \node[xshift=3.9cm,yshift=-3.5cm] at (current page.north west) {\includegraphics[width=.5\textwidth]{resources/map.png}};
+        \node [anchor=west] (cdc) at (-1,-5.5) {\footnotesize Map (symbolic) from \cite{russellJones+08a}, H3N2 HA epitope site from \cite{koelBurke+13}};
 
-      Genealogical: Is there a certain type of Mutation? KOEL 7
+      \end{tikzpicture}
 
-      Immunological: Hemagglutinin inhibition cartography
+      \vfill
+      Epidemiology: Geographical region?\\[2mm]
 
-      (Denote the scales here: Molecule/Cell/Population and that they couple)
+      Molecular Biology: Is there a certain type of Mutation?\\[2mm]
 
-      Vision: Bring these levels together
+      Immunology: Hemagglutinin inhibition cartography\\[2mm]
+
+      \Large Vision: Bring these levels together
     \end{frame}
 
 
@@ -312,6 +342,8 @@
       %   \end{figure}
     \end{frame}
 
+    \subsection{Mapping Antigenicity to the Tree}
+
     \begin{frame}{\subsecname}
       \framesubtitle{}
       \begin{figure}
@@ -359,7 +391,7 @@
       $D_{a\beta}~$........................... genetic component of titer drop
 
       \begin{align}
-        \hat{H}_{a\beta} = v_a + p_\beta + D_{ab} \text{D is between two viruses}
+        \hat{H}_{a\beta} = v_a + p_\beta + D_{ab} \text{   D is between two viruses}
       \end{align}
 
 
@@ -371,7 +403,7 @@
       \begin{align}
         \hat{H}_{a\beta} \stackrel{!}={} {H}_{a\beta}
       \end{align}
-      so we minimize a cost function $C$ of the whole tree:
+      to that end we minimize a cost function $C$ of the whole tree:
       \begin{align}
         C := \sum_{a,\beta}( \hat{H}_{a\beta} - {H}_{a\beta})^2 + \lambda \sum_i d_i + \gamma \sum_a v_a^2 + \delta \sum_\alpha p_\alpha^2
       \end{align}
@@ -399,9 +431,9 @@
       \framesubtitle{Omitting 10\% of the HI titer data, to make a test}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/neher+16/tree_model.pdf}
-        \caption{\footnotesize On left, 10\% randomly picked measurements were omitted,\
+        \caption{\footnotesize On the left, 10\% randomly picked measurements were omitted,\
 
-        on right, 10 \% of the titer columns were held back, as if it was a new virus}
+        on the right, 10 \% of entire titer columns were held back, as if it was a new clade}
       \end{figure}
     \end{frame}
 
@@ -446,14 +478,6 @@
     \end{frame}
 
     \begin{frame}{\subsecname}
-      \framesubtitle{cumulative antigenic change}
-      \begin{figure}
-        \includegraphics[width=\textwidth]{resources/neher+16/cumulative_antigenic_change.pdf}
-        \caption{\footnotesize a}
-      \end{figure}
-    \end{frame}
-
-    \begin{frame}{\subsecname}
       \framesubtitle{distance to season year}
       \begin{figure}
         \includegraphics[width=.8\textwidth]{resources/neher+16/distance_to_season_year.pdf}
@@ -461,14 +485,6 @@
       \end{figure}
     \end{frame}
 
-
-    \begin{frame}{\subsecname}
-      \framesubtitle{years antigenic advance}
-      \begin{figure}
-        \includegraphics[width=.7\textwidth]{resources/neher+16/years_antigenic_advance.pdf}
-        \caption{\footnotesize a}
-      \end{figure}
-    \end{frame}
 
 
 
@@ -497,7 +513,7 @@
 
     \subsection{How to use the Framework}
     \begin{frame}{\secname : \subsecname}
-      \framesubtitle{(this is mirrored in the narrative)}
+      \framesubtitle{\href{URL}{https://nextstrain.org/community/narratives/gitchhiker/virophyle}}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/NextstrainPathogens.pdf}
         \caption{\footnotesize }
@@ -536,6 +552,7 @@
         \item My question: what happens if epidemic threshold is crossed even further, and zoonotic forcing is stronger?
         \item nice to see instance of Red Queen Hypothesis
         \item Transparency and Community building very important!
+        \item When you find literature on phylodynamics, often animals, but to me this is more difficult.
       \end{itemize}
     \end{frame}
 

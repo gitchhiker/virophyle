@@ -70,9 +70,8 @@ This is particularly useful for getting a quick overview over a transient situat
 
 <!-- ############ SLIDE BREAK ############# -->
 <!-- This is left-side text -->
-# [COVID](https://nextstrain.org/ncov?d=tree,map,frequencies&p=grid)
+# [Solution](https://nextstrain.org/flu/seasonal/h3n2/ha/12y?c=gt-HA1_145,155,156,158,159,189,193)
 
-At the <br><br>
-This is particularly useful for getting a quick overview over a transient situation.
+This is what it is supposed to look like, it is very close to coloring by clade.
 <br><br>
 
