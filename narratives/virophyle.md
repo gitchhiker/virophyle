@@ -64,7 +64,7 @@ The genome can be zoomed and, by clicking a particular site the tree is colored 
 <!-- This is left-side text -->
 # [Solution](https://nextstrain.org/flu/seasonal/h3n2/ha/12y?c=gt-HA1_145,155,156,158,159,189,193)
 
-We can for example color according to the Koel 7 epitope sites, see [Koel et. al. 2013](https://science.sciencemag.org/content/342/6161/976/tab-figures-data)
+We can for example color according to the Koel 7 epitope sites, see Koel et. al. 2013.
 <br><br>
 The diagram can also be colored with respect to other specific mutations, Antigenic Novelty, Host species, Exposure History e.g. of travelers and much more. (Just explore!)
 
