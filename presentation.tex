@@ -71,7 +71,7 @@
     \begin{itemize}
       \itemsep1em
       \item Estimated $3 - 11 \% $ of the population catch symptomatic influenza each season \cite{tokarsOlsen+18a}
-      \item Influenza evolves rapidly and evades immunity and vaccines
+      \item Influenza evolves rapidly, evading immune system recognition and vaccines
       \item Epidemics and pandemics caused by RNA recombination events
       \item Science is slow responding to health issues
     \end{itemize}
@@ -80,13 +80,18 @@
   \begin{frame}<beamer>
     \frametitle{Problem}
     \begin{itemize}
-      \item $\sim$ \textit{8 months} from submission to publication of a medical paper \cite{aAMC18}
-      \item $\sim$ \textit{6 months} from vaccine strain selection to distribution:
+      \item {\Large $\sim 8$ \textit{months}} from submission to publication of a medical paper \cite{aAMC18}
+      \item {\Large $\sim 6$ \textit{months}} from vaccine strain selection to distribution:
     \end{itemize}
     \begin{figure}
         \includegraphics[width=\textwidth]{resources/flu_vaccine_schedule.png}
-        \caption{\cite{bedford15}}
+        \caption{\footnotesize from \cite{bedford15}}
     \end{figure}{}
+    \begin{itemize}
+      \item compare: {\LARGE $\sim 1.6$ \textit{days}} doubling time of H1N1 (2009) \\
+      \footnotesize \cite{mostaco-GuidolinGreer+11}
+    \end{itemize}
+    
   \end{frame}
 
 
@@ -134,7 +139,7 @@
 
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/alberts2015molecularp1292.pdf}
-        \caption{Influenza A evolutionary shift events \cite{alberts15}}
+        \caption{recent influenza A evolutionary shift events \cite{alberts15}}
       \end{figure}{}
     \end{frame}{}
 
@@ -182,7 +187,8 @@
 
         \item root $\Rightarrow$ parents, children
 
-        \item clade---a collection of branches
+        \item \invisible{root} $\Rightarrow$ clades:\\
+        \hspace*{.5cm}a branch with its children
 
       \end{itemize}
     \end{frame}
@@ -201,31 +207,33 @@
 
       Minimize the number of mutations to get the most likely tree(s)\\[1mm]
 
-      Problem: for $n$ leaves, \# possible trees $\propto 2^n\ n !$\\[1mm]
+      Problem: for $N$ leaves: \hspace*{.5cm}\# possible trees $\propto 2^N\ (N-1) !$\\[1mm]
 
-      $\Rightarrow$ We can always just compute a small number of trees
+      $\Rightarrow$ We can usually just compute a minute fraction of these.
 
     \end{frame}
 
-    \subsection{Sequence Alignment}
 
     \begin{frame}{\secname}
-      \framesubtitle{Example algorithm: \subsecname}
+      \framesubtitle{Example algorithm}
 
       \begin{tikzpicture}[remember picture,overlay]
         \node[xshift=-2.2cm,yshift=-2.2cm] at (current page.north east) {\includegraphics[width=.4\textwidth]{resources/align.pdf}};
       \end{tikzpicture}
       \vfill
-      N sequences of lengths $n_1 ... n_N$ (not same due to indels, seq. errors)
+      $N$ sequences of lengths $\ell_1 ... \ell_N$ \small \hspace*{.3cm}(not identical due to indels, seq. errors)
       \begin{itemize}
-        \item Pairwise matching, give a penalty, make N x N table
-        \item Lowest penalties group together, form new subunit.
-        \item Iterate. When comparing to sets of sequences, use mean.
+        \item Compare pairwise, assign a distance, make $N \times N$ table
+        \item Lowest distances group together, form new subunit.
+        \item Iterate. When comparing to sets of sequences, use arithmetic mean.
       \end{itemize}
 
-      Result: small number of locally most likely trees, not necessarily global maximum.
+      Result: small number of locally most likely trees,\\
+      \hspace*{1.06cm}not necessarily global maximum.
 
-      Effectively in use today: Markov Chain Monte Carlo "climber"
+      Computing scales with $N^2$
+
+      Better: Markov Chain Monte Carlo
 
     \end{frame}
 
@@ -248,9 +256,11 @@
         \includegraphics[width=\textwidth]{resources/molClock2.pdf}
         \caption{\footnotesize Linear time-mutation relationship}
       \end{figure}
-      \vspace*{-.2cm}
+      \vspace*{-.6cm}
       \footnotesize
-      Strongly simplified. Different genome sites experience different evolutionary pressure. Say: Silent vs. non-silent, each site in genome can have a different rate. Then it is hard to deduce anything, possible intermediate: Distribution of rates.
+      Probability of s.c. \textit{silent} mutations can be taken constant.
+
+      \textit{Non-silent}---amino acid changing---mutations are under evolutionary pressure.
     \end{frame}
 
 
@@ -274,9 +284,9 @@
       \end{tikzpicture}
 
       \vfill
-      Epidemiology: Geographical region?\\[2mm]
+      Epidemiology: Geographical predictor?\\[2mm]
 
-      Molecular Biology: Is there a certain type of Mutation?\\[2mm]
+      Molecular Biology: Is there a telltale mutation site?\\[2mm]
 
       Immunology: Hemagglutinin inhibition cartography\\[2mm]
 
@@ -309,20 +319,30 @@
       \framesubtitle{}
       \begin{figure}
         \includegraphics[width=.7\textwidth]{resources/hemagglutinationInhibitionAssay.pdf}
-        \caption{Antisera that fit the HA's epitope site bind it, letting the RBC sink to the bottom. Effect works up to a certain antigenic distance and .}
+        \caption{Antisera that fit the HA's epitope site bind to it, letting the RBC sink to the bottom. Effect works up to a certain antigenic distance and sntiserum concentration.}
       \end{figure}
     \end{frame}
 
     \begin{frame}{\subsecname}
       \framesubtitle{}
       \begin{figure}
-        \includegraphics[width=.9\textwidth]{resources/HIassaylab.jpg}
-        \caption{\footnotesize Here, one antiserum is tested in 12 different dilutions against 8 different virus strains. The highest dilution that prevents agglutination is called the titer.}
+        \includegraphics[width=.9\textwidth]{resources/HIassaylab1.pdf}
+        \caption{\footnotesize Test 12 different dilutions of one antiserum against 8 different virus strains. The highest dilution that prevents agglutination is called the titer.}
       \end{figure}
     \end{frame}
 
     \begin{frame}{\subsecname}
       \framesubtitle{How this used to be looked at}
+
+
+      \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-2.9cm,yshift=-5.4cm] at (current page.north east) {\includegraphics[width=.3\textwidth]{resources/hi_smith_map.jpg}};
+        \node[xshift=3.9cm,yshift=-4.5cm] at (current page.north west) {\includegraphics[width=.5\textwidth]{resources/HItable.png}};
+        \node [anchor=west] (cdc) at (-.8,-2.5) {\footnotesize Table from \cite{bedford15},};
+        \node [anchor=west] (cdc) at (-.8,-3.2) {\footnotesize cartography from \cite{smithLapedes+04}};
+        \node [anchor=west] (cdc) at (-.8,-3.6) {\footnotesize \hspace*{.3cm} (one gridline is one $\log_2$ titer i.e. two-fold dilution)};
+
+      \end{tikzpicture}
       % \begin{figure}
       %   \centering
       %   \begin{subfigure}{.5\textwidth}
@@ -348,35 +368,30 @@
       \framesubtitle{}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/HItableToTree.pdf}
-        \caption{\footnotesize Mapping the chart to the tree constructed from sequences}
+        \caption{\footnotesize Mapping the chart to the tree inferred from sequences. \cite{bedford15}}
       \end{figure}
+      \addtocounter{figure}{-1}
+
     \end{frame}
 
     \begin{frame}{\subsecname}
       \framesubtitle{}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/HItableToTreeDiffs.pdf}
-        \caption{\footnotesize Here, one antiserum is tested in 12 different dilutions against 8 different virus strains. The highest dilution that prevents agglutination is called the titer.}
+        \caption{\footnotesize Mapping the chart to the tree inferred from sequences. \cite{bedford15}}
       \end{figure}
     \end{frame}
 
-    \begin{frame}{\subsecname}
-      \framesubtitle{}
-      \begin{figure}
-        \includegraphics[width=\textwidth]{resources/HItableToTreeUru.pdf}
-        \caption{\footnotesize Here, one antiserum is tested in 12 different dilutions against 8 different virus strains. The highest dilution that prevents agglutination is called the titer.}
-      \end{figure}
-    \end{frame}
 
     \begin{frame}{\subsecname}
-      \framesubtitle{\small The asymmetry makes sense, think of it like this but with more dimensions}
+      \framesubtitle{\small A literal toy model:}
       \begin{figure}
         \includegraphics[width=.58\textwidth]{resources/shapesOfWood.jpg}
         \caption{\footnotesize \cite{rosipaw10}}
       \end{figure}
     \end{frame}
 
-    \begin{frame}[allowframebreaks]{Formulas}
+    \begin{frame}[allowframebreaks]{The Model --- \cite{neherBedford+16} ---}
       \framesubtitle{}
       $T_{a\beta}~\ $........................... HI titer of virus $a$ against antiserum $\beta$ (virus $b$)
 
@@ -391,15 +406,15 @@
       $D_{a\beta}~$........................... genetic component of titer drop
 
       \begin{align}
-        \hat{H}_{a\beta} = v_a + p_\beta + D_{ab} \text{   D is between two viruses}
+        \hat{H}_{a\beta} = v_a + p_\beta + D_{ab}
       \end{align}
 
 
-      What remains is split up into a sum over individual mutation contributions:
+      What remains is split up into a sum over individual branch contributions $d_i \ge 0$:
       \begin{align}
         D_{ab} = \sum_{i \in (a ... b)} d_i
       \end{align}
-      Where the sum is over the path connecting virus $a$ and virus $ b \stackrel{}={}$ antiserum $\beta$. Now we want
+      Where the sum is over the path connecting virus $a$ and virus $ b $ corresponding to antiserum $\beta$. Now we want
       \begin{align}
         \hat{H}_{a\beta} \stackrel{!}={} {H}_{a\beta}
       \end{align}
@@ -423,70 +438,63 @@
 
 
 
-  \subsection{Results}
+  \subsection{Predictions}
 
 
 
     \begin{frame}{\subsecname}
-      \framesubtitle{Omitting 10\% of the HI titer data, to make a test}
+      \framesubtitle{of antigenicity}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/neher+16/tree_model.pdf}
         \caption{\footnotesize On the left, 10\% randomly picked measurements were omitted,\
 
-        on the right, 10 \% of entire titer columns were held back, as if it was a new clade}
+        on the right, 10 \% of entire titer columns were held back, as if it was a new clade.\
+
+        Dataset: Influenza A/H3N2 (12y) \cite{neherBedford+16}}
       \end{figure}
     \end{frame}
 
     \begin{frame}{\subsecname}
-      \framesubtitle{Asymmetry not interesting, but maybe quartet rule?}
+      \framesubtitle{corroborating "tree-likeness"}
       \begin{figure}
-        \includegraphics[width=\textwidth]{resources/neher+16/tree_model_hist.pdf}
-        \caption{\footnotesize a}
+        \includegraphics[width=.8\textwidth]{resources/neher+16/tree_model_hist.pdf}
+        \caption{\footnotesize Left: Does subtracting $v_a$ and $p_\beta$ enforce symmetry? ($\Delta_{a\beta} \stackrel{\cdot}={} D_{ab}$)\
+        
+        Right: showing tree-likeness, employing the quartet rule. \cite{neherBedford+16}}
       \end{figure}
     \end{frame}
 
     \begin{frame}{\subsecname}
-      \framesubtitle{Does recent antigenic evolution have fixation implications?}
+      \framesubtitle{fixation implications}
       \begin{figure}
         \includegraphics[width=\textwidth]{resources/neher+16/recent_antigenic_evolution.pdf}
-        \caption{\footnotesize Fraction of samples having a certain mutation plotted vs. time
+        \caption{\footnotesize Fraction of samples having a certain mutation plotted over time.
 
-        Strains with frequencies smaller than $0.01$ were omitted.}
+        Strains with frequencies smaller than $0.01$ were omitted. \cite{neherBedford+16}}
       \end{figure}
     \end{frame}
 
     \begin{frame}{\subsecname}
-      \framesubtitle{thresholds}
+      \framesubtitle{recall:}
       \begin{tikzpicture}[remember picture,overlay]
         \node[xshift=-4cm,yshift=-1.5cm] at (current page.north east) {\includegraphics[width=.7\textwidth]{resources/neher+16/recent_antigenic_evolution.pdf}};
       \end{tikzpicture}
       \begin{figure}
         \includegraphics[width=.65\textwidth]{resources/h3n2escape.pdf}
-        \caption{\footnotesize GET nextstrain tree with trunk colored according to antigenic advance}
+        \caption{\footnotesize A/H3N2 phylogeny \cite{volzKoelle+13}}
       \end{figure}
     \end{frame}
 
     \begin{frame}{\subsecname}
-      \framesubtitle{thresholds}
+      \framesubtitle{fixation jumps}
       \begin{tikzpicture}[remember picture,overlay]
         \node[xshift=-4cm,yshift=-1.5cm] at (current page.north east) {\includegraphics[width=.7\textwidth]{resources/neher+16/recent_antigenic_evolution.pdf}};
       \end{tikzpicture}
       \begin{figure}
         \includegraphics[width=.8\textwidth]{resources/neher+16/fraction_frequency_threshold_colourbar.pdf}
-        \caption{\footnotesize a}
+        \caption{\footnotesize For high recent antigenic evolution traits, $25\%$ prevalence directly entails $75\%$ \cite{neherBedford+16}}
       \end{figure}
     \end{frame}
-
-    \begin{frame}{\subsecname}
-      \framesubtitle{distance to season year}
-      \begin{figure}
-        \includegraphics[width=.8\textwidth]{resources/neher+16/distance_to_season_year.pdf}
-        \caption{\footnotesize a}
-      \end{figure}
-    \end{frame}
-
-
-
 
 
 
@@ -496,20 +504,15 @@
 
   \section{\textit{Nextstrain}}
 
-    \begin{frame}{\secname}
-      \framesubtitle{Mending pieces together}
-      Please visit nextstrain.org/narratives/.....
+    \begin{frame}
 
-      Ideas: COVID-Line? H3N2-Line?
+      \begin{figure}
+        \includegraphics[width=.8\textwidth]{resources/nextstrain.png}
+      \end{figure}
+      \begin{tikzpicture}[remember picture,overlay]
+        \node [anchor=west] (cdc) at (-.8,-3.6) {\footnotesize \cite{leeMoncla+00}};
 
-      Multiple data sets?
-
-      de Vries Epitope sites
-
-      Koel 7 sites
-
-      D614G --- Epidemiologic turning point
-    \end{frame}
+      \end{tikzpicture}
 
     \subsection{How to use the Framework}
     \begin{frame}{\secname : \subsecname}
@@ -520,15 +523,7 @@
       \end{figure}
     \end{frame}
 
-    \subsection{The Powerful Meta Data}
-    \begin{frame}{\secname : \subsecname}
-      \framesubtitle{(this is mirrored in the narrative)}
-    \end{frame}
-
-    \subsection{Confidence Levels and Limitations}
-    \begin{frame}{\secname : \subsecname}
-      \framesubtitle{(this is mirrored in the narrative)}
-    \end{frame}
+    \section{Outlook}
 
     \begin{frame}{Multi Scale Evolution}
       \framesubtitle{}
