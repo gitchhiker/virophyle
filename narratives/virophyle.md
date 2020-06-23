@@ -3,7 +3,7 @@ title: "Welcome to the test narrative for the Physics of Viruses seminar.\n We w
 authors: "Paul Wiesemeyer"
 affiliations: "pwieseme@iup.uni-heidelberg.de"
 date: "June 23, 2018"
-dataset: "https://nextstrain.org/flu/seasonal/h3n2/ha/12y"
+dataset: "https://nextstrain.org/flu/seasonal/h3n2/ha/2y"
 abstract: ""
 ---
 
@@ -64,9 +64,9 @@ The genome can be zoomed and, by clicking a particular site the tree is colored 
 <!-- This is left-side text -->
 # [Solution](https://nextstrain.org/flu/seasonal/h3n2/ha/2y?c=gt-HA1_145,155,156,158,159,189,193)
 
-We can for example color according to the Koel 7 epitope sites, see ![Koel et. al. 2013](https://science.sciencemag.org/content/342/6161/976/tab-figures-data)
+We can for example color according to the Koel 7 epitope sites, see [Koel et. al. 2013](https://science.sciencemag.org/content/342/6161/976/tab-figures-data)
 <br><br>
-This reproduces almost one-to-one the distinction into clades.
+The diagram can also be colored with respect to other specific mutations, Antigenic Novelty, Host species, Exposure History e.g. of travelers and much more. (Just explore!)
 
 
 <!-- ############ SLIDE BREAK ############# -->
