@@ -1,8 +1,9 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{scrartcl}
 
 \author{Paul Wiesemeyer}
 \title{Phylogenetics for Predicting Virus Evolution}
-\date{October 10, 2020}
+\subtitle{Including a brief guide to the open science tool {\LARGE\textit{nextstrain.org}} \texorpdfstring{\\[1cm]}{,}A Contribution to the 2020 Seminar ``Physics of Viruses'' Held by Ulrich Schwarz and Frederik Graw at University Heidelberg }
+\date{\today}
 
 
 \input{latex-includes/includes}
@@ -14,17 +15,42 @@
 \usepackage{amsmath}
 \usepackage{xspace}
 \usepackage{forest}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\usepackage[acronym]{glossaries}
+\renewcommand{\glstextformat}[1]{\textit{#1}}
+\makeglossaries
+\include{latex-includes/glossary}
+
+
+\newcommand{\red}[1]{{\color{red}#1}}
+
+
 
 \begin{document}
 
 \maketitle
 
+\section*{Aim of this write-up}
+
+  After reading these pages\textemdash and potentially following the recommended material at the end of each section\textemdash the reader will be able to:
+  \begin{itemize}
+    \item Read phylogenetic trees
+    \item Explore the framework nextstrain.org
+    \item Have some in-detail knowledge about influenza
+    \item Have gotten a close look at the phylogenetic approach at prediction of viral evolution
+    \item ... and hopefully end up with a sprawling interest in virus research.
+  \end{itemize}
+
+  As the research on this vast field proved cumbersome due to many terms and definitions unfamiliar to a physics graduate, this write-up is augmented by a Glossary and List of Abbreviations (at the very end).
+\tableofcontents
 
 \section{Introduction}
 
   \subsection{Problem at Hand}
 
-    Viruses and the diseases they provoke put a large burden on human life. These comparably simple structures are capable of modifying and possibly destroying vital functions in the human body, by infiltrating their genetic material into the reproductory apparatus of cells.
+    Viruses, and the diseases they provoke, put a large burden on human society. \red{Viruses are ...(TODO) .} comparably simple structures are capable of modifying and possibly destroying vital functions in the human body, by infiltrating their genetic material into the reproductory apparatus of cells.
 
     All viruses that persist in the human population over longer times share some common features:
     \begin{itemize}
@@ -33,45 +59,60 @@
       \item They aim at reproducing quickly
       \item If there is no constant infection source, they need to find a path to get from one individual to another
       \item They will have to deal with human immune system response
-      \item They will underlie some kind of evolutionary pressure
+      \item They will underlie some kind of evolutionary pressure (too general).
     \end{itemize}
 
-    (This rough characterisation is of course incomplete, and there may also be exceptions.)
+    (This rough characterization is of course incomplete, and there may also be exceptions. The terms ``need'' and ``aim at'' are to be understood as: evolutionary processes strongly favor these characteristics.)
 
     To give another rough image of what makes up a virus, here are the essential constituents:
     \begin{itemize}
-      \item A piece of genetic code (RNA or DNA, positive or negative sense, usually some few kilobase(pairs) long)
-      \item A hull: either only a capsid (of proteines) or an additional envelope (bilipid layer) with surface proteines
+      \item A piece of genetic code, most importantly categorized into: \acrfull{rna} or \acrfull{dna}, single or double stranded, positive or negative sense, length (usually some few kilo base (pairs) long)
+      \item A hull: either only a capsid (of proteins) or an additional envelope (bilipid layer).
     \end{itemize}
 
-    For enveloped viruses such as in the \textit{Orthomyxoviridae} family (including influenza) or \textit{Coronaviridae} (e.g. SARS-CoV-2), there is usually a variety of different surface proteins that populate the bilipid layer.
+    For most enveloped viruses such as members of the \textit{Orthomyxoviridae} family (including influenza) or \textit{Coronaviridae} (e.g. SARS-CoV-2), there is a variety of different surface proteins that populate the bi-lipid layer.
 
-    These surface proteins take up functions such as binding to a cell to infiltrate the viruses genetic sequence into it, or releasing a freshly assembled virus from the host cell's surface into the surrounding body fluids. This is usually done via interactions with specific host cell receptors, therefore defining a \textit{receptor binding domain (RBD)} as the part of the surface protein that fits onto the receptor as a key fits into a lock.
+    These surface proteins take up functions such as binding to a cell to infiltrate the viruses genetic sequence into it, or releasing a freshly assembled virus from the host cell's surface into the surrounding body fluids. This is usually done via interactions with specific host cell receptors, therefore defining a \acrfull{rbd} as the part of the surface protein that fits onto the receptor like a key fits into a lock.
 
-    At the same time, the human immune system will also get in contact with mostly surface proteins. The immune system will eventually develop antibodies that are targeted to bind to a specific region of virus surface proteins, thereby rendering them innocuous. The surface protein region tageted by the immune system is called \textit{epitope site} and may have a large overlap with the RBD.
+    At the same time, the human immune system will also interact with mostly surface proteins. The immune system will eventually develop antibodies that are targeted to bind to a specific region of virus surface proteins, thereby rendering them innocuous. The surface protein region targeted by the immune system is called \textit{epitope site} and may have a large overlap with the RBD.
 
-    These two mechanisms put an evolutionary pressure on the virus, especially on the surface proteins and its epitope sites. While having to maintain essentail funcionings as binding to receptors, the virus will draw large advatage from an epitope site modified to such an extent that the antibodies cannot bind to it any longer. This way of disguising itself\textemdash by animo acid mutations in crucial places\textemdash will allow the virus to reinfect previously immune individuals.
+    These two mechanisms put an evolutionary pressure on the virus, especially on the surface proteins and its epitope sites. While having to maintain essential functioning such as binding to receptors, the virus will draw large advantage from modifying its epitope site to such an extent that the antibodies cannot bind to it any longer. This way of disguising itself\textemdash by amino acid mutations in crucial places\textemdash will allow the virus to reinfect previously immune individuals of the host population.
 
-    An accelerated evolution can be very beneficial to the virus, \textit{but}\textemdash since the capability to sequence and read out the viral genome\textemdash also provides a large record to trace a virus' history.
+    An accelerated evolution therefore allows viruses to persist in the human population over long periods, but at the same time provides a large record to trace its spreading history, when the viral genome is sequenced and the information is curated.
 
-    In this write-up, we will look at how the sequencing of the viral genome, along with phylogenetic tree inference, can provide useful insights on (i) the route that the virus takes to spread in the human population, (ii) the existence and prevalence of strains witin a virus (sub)type, and (iii) the projected evasion of the virus from immune system response and vaccines.
+    In this write-up, we will look at how sequencing of the viral genome, along with phylogenetic tree inference, can provide useful insights on (i) the route that the virus takes to spread in the human population, (ii) the prevalence of strains within a virus type, and (iii) the (projected) evasion of the virus from immune system response and vaccines.
 
-  \subsection{Influenza}
+    \red{Vaccines need updates. Scientific publishing and vaccine manufacturing take in the order of half a year each. Two influenza seasons (at a given place)are usually only a few months apart.}
+
+    The goal of the \textit{nextstrain} research group is to make phylogenetic trees inferred from external sequencing labs quickly accessible and easily explorable for fellow scientists, health care officials and the public. This is urgently needed in highly dynamic situations such as the 2020 COVID-19 pandemic. Also, \textit{nextstrain} provides an integrated visualization of pathogen spreading phenomena, as will be explained in section \ref{nextstrain}.
+
+    Here, we chose to look at influenza, as it is the evergreen. \red{Recombination pathway for evo.}
+
+\section{Phylogenetics}
+
+  Essentially the Wikipedia Article + Volz 2013 (TODO read)
+
+  \subsection{Idea}
+
+  \Gls{phylogenetics} is the
+
+  \subsection{How to Read a Phylogenetic Tree}
+
+  \subsection{Recommended Material}
+
+
+
+
+\section{Influenza}
 
   Influenza is one of the most common viral diseases \citep{DudaMenna20} and puts a large burden on human health. The disease is estimated to cause symptomatic illness in about $3 - 11 \%$ of the human population (in the U.S.) \citep{tokarsOlsen+18} every season. Globally, up to $650,000$ individuals die from influenza illness every season \cite[see][]{iulianoRoguski+18}.
 
-  Influenza refers to a disease caused by a virus of the influenza family \textit{Orthomyxoviridae}. All orthomyxo viruses have an envelope that carries surface proteines and their genome is a negative sense RNA.
+  Influenza refers to a disease caused by a virus of the influenza family \textit{Orthomyxoviridae}. All \textit{orthomyxo} viruses have an envelope that carries surface proteins and their genome is a negative sense RNA.
 
-  Most relevant for human infectious diseases are the genera \textit{Alpha-} and \textit{Betainfluenzavirus} that contain the species \textit{Influenza A} and \textit{Influenza B} respectively.\\[0mm]
-% \forestset{
-%   xlist/.style={
-%     phantom,
-%     for children={no edge,replace by={[,append,
-%       delay={{asdf}}
-%       ]}}
-%   },
-%   xlist/.default=0
-%   }
+  Most relevant for human infectious diseases are the genera \textit{Alpha-} and \textit{Betainfluenzavirus} that contain the species \textit{Influenza A} and \textit{Influenza B} respectively.
+
+  They are further subdivided into their so called \textit{Serotype}, a classification by coagulation behavior in the \gls{hemagglutinationAssay}\\[0mm]
+
 
 \begin{tabular}{ c c c c c }
 
@@ -118,104 +159,8 @@ Taxonomy: & \hspace{18mm}Family\hspace{13mm} & Genus\hspace{3mm} & Species\hspac
   ]
 \end{forest}
 
+\red{Recombination evo pathway. E.g. Avian H7N9 Flu CFR 15-60 \% but no H2H}
 
-  % \tikzstyle{every node}=[draw=black,thick,anchor=west]
-  % \tikzstyle{selected}=[draw=red,fill=red!30]
-  % \tikzstyle{optional}=[dashed]
-  % \begin{tikzpicture}[%
-  %   grow via three points={one child at (1.5,-0.4) and
-  %   two children at (1.5,-0.4) and (1.5,-1.4)},
-  %   edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)}]
-  %   \node {Viruses}
-  %     child { node [optional] {...}
-  %       child { node {Orthomyxoviridae}
-  %         child { node {$\alpha$}
-  %           child { node {Influenza A}
-  %             child { node {H1N1}}
-  %             child { node {H3N2}}
-  %           }
-  %         }
-  %         child { node {$\beta$}
-  %                     child { node {Influenza B}}
-  %         }
-  %       }
-  %     }
-          
-            
-              
-  %         %   }
-  %         % }
-          
-  %         %   }
-  %         % }
-  %         child { node [optional] {...}};
-  %       %   }
-
-  %       % }
-        
-  %     % };
-  % \end{tikzpicture}
-
-% \begin{tikzpicture}[
-%     grow=right,
-%     level 1/.style={sibling distance=3.5cm,level distance=5.2cm},
-%     level 2/.style={sibling distance=3.5cm, level distance=6.7cm},
-%     edge from parent/.style={very thick,draw=blue!40!black!60,
-%         shorten >=5pt, shorten <=5pt},
-%     edge from parent path={(\tikzparentnode.east) -- (\tikzchildnode.west)},
-%     kant/.style={text width=2cm, text centered, sloped},
-%     every node/.style={text ragged, inner sep=2mm},
-%     punkt/.style={rectangle, rounded corners, shade, top color=white,
-%     bottom color=blue!50!black!20, draw=blue!40!black!60, very
-%     thick }
-%     ]
-
-% \node[punkt, text width=5.5em] {Virus}
-%     %Lower part lv1
-%     child {
-%         node[punkt] [rectangle split, rectangle split, rectangle split parts=3,
-%          text ragged] {
-%             \textbf{Scenario  1}
-%                   \nodepart{second}
-%             $\text{Country B}\colon    s\bar{Q}$
-%                   \nodepart{third}
-%             $\text{Country A}\colon\bar{Q}$
-%         }
-%         edge from parent
-%             node[kant, below, pos=.6] {}
-%     }
-%     %Upper part, lv1
-%     child {
-%         node[punkt, text width=6em] {Country~A}
-%         %child 1
-%         child {
-%             node [punkt,rectangle split, rectangle split,
-%             rectangle split parts=3] {
-%                 \textbf{Scenario  2}
-%                 \nodepart{second}
-%                 $\text{Country B}\colon s\bar{Q}+2\alpha\Delta E -sc$
-%                 \nodepart{third}
-%                 $\text{Country A}\colon\bar{Q}-\alpha\Delta E -
-%                 \pa{1-s}c$
-%             }
-%             edge from parent
-%                 node[below, kant,  pos=.6] {}
-%         }
-%         %child 2
-%         child {
-%             node [punkt, rectangle split, rectangle split parts=3]{
-%                 \textbf{Scenario 3}
-%                 \nodepart{second}
-%                 $\text{Country B}\colon s\bar{Q}-2sc$
-%                 \nodepart{third}
-%                 $\text{Country A}\colon\bar{Q}-2\pa{1-s}c$
-%             }
-%             edge from parent
-%                 node[kant, above] {}}
-%             edge from parent{
-%                 node[kant, above] {}}
-%     };
-% \end{tikzpicture}
 
     \subsubsection{Basics}
 
@@ -235,18 +180,21 @@ Taxonomy: & \hspace{18mm}Family\hspace{13mm} & Genus\hspace{3mm} & Species\hspac
 
       mention cartography from Smith+2004 (?)
 
-\section{Phylodynamics}
-
-  Essentially the Wikipedia Article + Volz 2013 (TODO read)
-
-
-\section{Nextstrain}
+\section{Nextstrain} \label{nextstrain}
 
   \subsection{Idea}
 
   \subsection{Short Usage Instructions}
+  \begin{figure}[h!]
+    \makebox[\textwidth][c]{
+    \includegraphics[width=1.2\textwidth]{linked/screen_red_boxes_next_flu_2y.pdf}}
+    \caption{\footnotesize Taken from the \href{https://nextstrain.org/flu/seasonal/h3n2/ha/2y?p=grid}{2 year seasonal H3N2 flu HA dataset visualization} on \href{https://nextstrain.org}{\textbf{nextstrain.org}}, \cite{leeMoncla+20}}
+  \end{figure}
+
 
   \subsection{Example}
+
+  \subsection{Recommended Material}
 
 \section{Mapping Influenza Evolution}
 
@@ -260,18 +208,44 @@ Taxonomy: & \hspace{18mm}Family\hspace{13mm} & Genus\hspace{3mm} & Species\hspac
 
   \subsection{Results}
 
+  \begin{figure}[h!]
+    \includegraphics[width=\textwidth]{linked/neher+16/recent_antigenic_evolution.pdf}
+    \caption{\footnotesize For high recent antigenic evolution traits, $25\%$ prevalence directly entails $75\%$ \cite{neherBedford+16}}
+  \end{figure}
+
+  \begin{figure}[h!]
+    \includegraphics[width=.8\textwidth]{linked/neher+16/fraction_frequency_threshold_colourbar.pdf}
+    \caption{\footnotesize For high recent antigenic evolution traits, $25\%$ prevalence directly entails $75\%$ \cite{neherBedford+16}}
+  \end{figure}
+
     Figure 6 Interpretation
 
 \section{Conclusion}
 
-  Very interesting!
+  Veryasfsadffds interestidsfng! \gls{maths} \acrfull{gcd} sdfg \gls{latex}
+
+\clearpage
+
+\section{References, Acronyms, and Glossary}
 
 
 \bibliography{virophyle}
 \bibliographystyle{apalike}
 
+\printglossary[type=\acronymtype]
+
+\printglossary
+
 % \include{latex-includes/introduction}
 
 % \include{latex-includes/influenza}
+
+% \clearpage
+
+% \section*{Appendix}
+
+
+
+
 
 \end{document}
