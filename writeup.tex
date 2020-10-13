@@ -1,8 +1,11 @@
 \documentclass[12pt]{scrartcl}
 
 \author{Paul Wiesemeyer}
-\title{Phylogenetics for Predicting Virus Evolution}
-\subtitle{Including a brief guide to the open science tool {\LARGE\textit{nextstrain.org}} \texorpdfstring{\\[1cm]}{,}A Contribution to the 2020 Seminar ``Physics of Viruses'' Held by Ulrich Schwarz and Frederik Graw at University Heidelberg }
+
+\title{Phylogenetics\texorpdfstring{\\}{,} for Predicting Virus Evolution}
+
+\subtitle{Including a brief guide to the open science tool {\LARGE\textit{nextstrain.org}} \texorpdfstring{\\[1cm]}{,}A Contribution to the 2020 Seminar ``Physics of Viruses'' Conducted by Ulrich Schwarz and Frederik Graw at University Heidelberg }
+
 \date{\today}
 
 
@@ -16,7 +19,9 @@
 \usepackage{xspace}
 \usepackage{forest}
 \usepackage{hyperref}
+
 \usepackage{graphicx}
+\usepackage{lmodern}
 
 \usepackage[acronym]{glossaries}
 \renewcommand{\glstextformat}[1]{\textit{#1}}
@@ -25,12 +30,15 @@
 
 
 \newcommand{\red}[1]{{\color{red}#1}}
+\newcommand{\gray}[1]{{\color{gray}#1}}
 
 
 
 \begin{document}
 
 \maketitle
+
+\clearpage
 
 \section*{Aim of this write-up}
 
@@ -39,56 +47,94 @@
     \item Read phylogenetic trees
     \item Explore the framework nextstrain.org
     \item Have some in-detail knowledge about influenza
-    \item Have gotten a close look at the phylogenetic approach at prediction of viral evolution
-    \item ... and hopefully end up with a sprawling interest in virus research.
+    \item Have gotten a close look at the phylogenetic approach at prediction of influenza evolution
+    \item ... and hopefully end up with a sprawling interest in virus research!
   \end{itemize}
 
-  As the research on this vast field proved cumbersome due to many terms and definitions unfamiliar to a physics graduate, this write-up is augmented by a Glossary and List of Abbreviations (at the very end).
+  As the research on this vast field proved cumbersome due to many terms and definitions unfamiliar to a physics graduate, this write-up is augmented by a glossary and a list of acronyms, found at the very end.
+
+\vfill
+
 \tableofcontents
 
-\section{Introduction}
+\clearpage
 
-  \subsection{Problem at Hand}
+\section{Resumée}
 
-    Viruses, and the diseases they provoke, put a large burden on human society. \red{Viruses are ...(TODO) .} comparably simple structures are capable of modifying and possibly destroying vital functions in the human body, by infiltrating their genetic material into the reproductory apparatus of cells.
 
-    All viruses that persist in the human population over longer times share some common features:
-    \begin{itemize}
-      \item They need some form of protection from their surroundings, a hull
-      \item They need to find a way to get into human cells
-      \item They aim at reproducing quickly
-      \item If there is no constant infection source, they need to find a path to get from one individual to another
-      \item They will have to deal with human immune system response
-      \item They will underlie some kind of evolutionary pressure (too general).
-    \end{itemize}
 
-    (This rough characterization is of course incomplete, and there may also be exceptions. The terms ``need'' and ``aim at'' are to be understood as: evolutionary processes strongly favor these characteristics.)
+  \subsection*{Old Introduction}
+    \gray{
 
-    To give another rough image of what makes up a virus, here are the essential constituents:
-    \begin{itemize}
-      \item A piece of genetic code, most importantly categorized into: \acrfull{rna} or \acrfull{dna}, single or double stranded, positive or negative sense, length (usually some few kilo base (pairs) long)
-      \item A hull: either only a capsid (of proteins) or an additional envelope (bilipid layer).
-    \end{itemize}
+      Viruses, and the diseases they provoke, put a large burden on human society. \red{Viruses are ...(TODO) .} comparably simple structures are capable of modifying and possibly destroying vital functions in the human body, by infiltrating their genetic material into the reproductory apparatus of cells.
 
-    For most enveloped viruses such as members of the \textit{Orthomyxoviridae} family (including influenza) or \textit{Coronaviridae} (e.g. SARS-CoV-2), there is a variety of different surface proteins that populate the bi-lipid layer.
+      All viruses that persist in the human population over longer times share some common features:
+      \begin{itemize}
+        \item They need some form of protection from their surroundings, a hull
+        \item They need to find a way to get into human cells
+        \item They aim at reproducing quickly
+        \item If there is no constant infection source, they need to find a path to get from one individual to another
+        \item They will have to deal with human immune system response
+        \item They will underlie some kind of evolutionary pressure (too general).
+      \end{itemize}
 
-    These surface proteins take up functions such as binding to a cell to infiltrate the viruses genetic sequence into it, or releasing a freshly assembled virus from the host cell's surface into the surrounding body fluids. This is usually done via interactions with specific host cell receptors, therefore defining a \acrfull{rbd} as the part of the surface protein that fits onto the receptor like a key fits into a lock.
+      (This rough characterization is of course incomplete, and there may also be exceptions. The terms ``need'' and ``aim at'' are to be understood as: evolutionary processes strongly favor these characteristics.)
 
-    At the same time, the human immune system will also interact with mostly surface proteins. The immune system will eventually develop antibodies that are targeted to bind to a specific region of virus surface proteins, thereby rendering them innocuous. The surface protein region targeted by the immune system is called \textit{epitope site} and may have a large overlap with the RBD.
+      To give another rough image of what makes up a virus, here are the essential constituents:
+      \begin{itemize}
+        \item A piece of genetic code, most importantly categorized into: \acrfull{rna} or \acrfull{dna}, single or double stranded, positive or negative sense, length (usually some few kilo base (pairs) long)
+        \item A hull: either only a capsid (of proteins) or an additional envelope (bilipid layer).
+      \end{itemize}
 
-    These two mechanisms put an evolutionary pressure on the virus, especially on the surface proteins and its epitope sites. While having to maintain essential functioning such as binding to receptors, the virus will draw large advantage from modifying its epitope site to such an extent that the antibodies cannot bind to it any longer. This way of disguising itself\textemdash by amino acid mutations in crucial places\textemdash will allow the virus to reinfect previously immune individuals of the host population.
+      For most enveloped viruses such as members of the \textit{Orthomyxoviridae} family (including influenza) or \textit{Coronaviridae} (e.g. SARS-CoV-2), there is a variety of different surface proteins that populate the bi-lipid layer.
 
-    An accelerated evolution therefore allows viruses to persist in the human population over long periods, but at the same time provides a large record to trace its spreading history, when the viral genome is sequenced and the information is curated.
+      These surface proteins take up functions such as binding to a cell to infiltrate the viruses genetic sequence into it, or releasing a freshly assembled virus from the host cell's surface into the surrounding body fluids. This is usually done via interactions with specific host cell receptors, therefore defining a \acrfull{rbd} as the part of the surface protein that fits onto the receptor like a key fits into a lock.
 
-    In this write-up, we will look at how sequencing of the viral genome, along with phylogenetic tree inference, can provide useful insights on (i) the route that the virus takes to spread in the human population, (ii) the prevalence of strains within a virus type, and (iii) the (projected) evasion of the virus from immune system response and vaccines.
+      At the same time, the human immune system will also interact with mostly surface proteins. The immune system will eventually develop antibodies that are targeted to bind to a specific region of virus surface proteins, thereby rendering them innocuous. The surface protein region targeted by the immune system is called \textit{epitope site} and may have a large overlap with the \acrshort{rbd}.
 
-    \red{Vaccines need updates. Scientific publishing and vaccine manufacturing take in the order of half a year each. Two influenza seasons (at a given place)are usually only a few months apart.}
+      These two mechanisms put an evolutionary pressure on the virus, especially on the surface proteins and its epitope sites. While having to maintain essential functioning such as binding to receptors, the virus will draw large advantage from modifying its epitope site to such an extent that the antibodies cannot bind to it any longer. This way of disguising itself\textemdash by amino acid mutations in crucial places\textemdash will allow the virus to reinfect previously immune individuals of the host population.
 
-    The goal of the \textit{nextstrain} research group is to make phylogenetic trees inferred from external sequencing labs quickly accessible and easily explorable for fellow scientists, health care officials and the public. This is urgently needed in highly dynamic situations such as the 2020 COVID-19 pandemic. Also, \textit{nextstrain} provides an integrated visualization of pathogen spreading phenomena, as will be explained in section \ref{nextstrain}.
+      An accelerated evolution therefore allows viruses to persist in the human population over long periods, but at the same time provides a large record to trace its spreading history, when the viral genome is sequenced and the information is curated.
 
-    Here, we chose to look at influenza, as it is the evergreen. \red{Recombination pathway for evo.}
+      In this write-up, we will look at how sequencing of the viral genome, along with phylogenetic tree inference, can provide useful insights on (i) the route that the virus takes to spread in the human population, (ii) the prevalence of strains within a virus type, and (iii) the (projected) evasion of the virus from immune system response and vaccines.
+
+      \red{Vaccines need updates. Scientific publishing and vaccine manufacturing take in the order of half a year each. Two influenza seasons (at a given place)are usually only a few months apart.}
+
+      The goal of the \textit{nextstrain} research group is to make phylogenetic trees inferred from external sequencing labs quickly accessible and easily explorable for fellow scientists, health care officials and the public. This is urgently needed in highly dynamic situations such as the 2020 COVID-19 pandemic. Also, \textit{nextstrain} provides an integrated visualization of pathogen spreading phenomena, as will be explained in section \ref{nextstrain}.
+
+      Here, we chose to look at influenza, as it is the evergreen. \red{Recombination pathway for evo.}
+
+    } % grey
+
+    \subsection{What are viruses?}
+
+    History: infectious fluids w/o bacteria. Turns out the mere information can modify a living being, using its reproductory apparatus. Viruses also mark the border to what is considered the living world, being classified as below it.
+
+    Functional definition: Genetic material. Mechanism to enter ``hijack'' host cell. Often: protective hull.
+
+    Detailed definition (box?): Different types of genetic code. Different types of protection from the outer world. Different mechanisms to enter a cell.
+
+    Include: Spreading of viruses. Airborne, Waterborne etc. most importantly: directly host-to-host, or does it need a source or intermediary host or reservoir?
+
+    Organizational structure of human society makes up a big threat when it comes to human-to-human transmission. What used to be a spatial problem in past centuries (e.g. the wavelike patterns by the bubonic plague) has now turned into a highly interconnected world, that is the structure of the population has changed dramatically. This accelerates pathogen transmission, as it ... but it also open new opportunities for countermeasures.
+
+    \subsection{What is problematic when viruses evolve?}
+
+    Evade immune system. And even vaccines. Leads to a race and so called coevolution. Mention the Red Queen here.
+
+    But one big advantage: We can now (since when?) sequence the genetic material and through the statistical nature of its modifications (mutations) extract information from it.
+
+    Most importantly we can interrelate the different probes. Where we just had 100 people with same symptoms, we can now make precise statements about who probably got the virus from whom. With a certain uncertainity.
+
+    So how can we make sense of this?
+
+    The theory behind this is called phylogenetics.
+
+
 
 \section{Phylogenetics}
+
+  
 
   Essentially the Wikipedia Article + Volz 2013 (TODO read)
 
@@ -114,73 +160,75 @@
   They are further subdivided into their so called \textit{Serotype}, a classification by coagulation behavior in the \gls{hemagglutinationAssay}\\[0mm]
 
 
-\begin{tabular}{ c c c c c }
+  \begin{tabular}{ c c c c c }
 
-Taxonomy: & \hspace{18mm}Family\hspace{13mm} & Genus\hspace{3mm} & Species\hspace{10mm} & Serotype\hspace{1mm}\\
-  
-\end{tabular}\\[0mm]
+   Taxonomy: & \hspace{18mm}Family\hspace{13mm} & Genus\hspace{3mm} & Species\hspace{10mm} & Serotype\hspace{1mm}\\
+    
+  \end{tabular}\\[0mm]
 
-\begin{forest}
-  for tree={
-    grow'=east,
-    draw,
-    calign=first,
-    font=\sffamily,
-    rounded corners,
-    parent anchor=east,
-    child anchor=west,
-    edge path={%
-      \noexpand\path [\forestoption{edge}] (!u.parent anchor) -- ++(0pt,0) |- (.child anchor)\forestoption{edge label};
+  \begin{forest}
+    for tree={
+      grow'=east,
+      draw,
+      calign=first,
+      font=\sffamily,
+      rounded corners,
+      parent anchor=east,
+      child anchor=west,
+      edge path={%
+        \noexpand\path [\forestoption{edge}] (!u.parent anchor) -- ++(0pt,0) |- (.child anchor)\forestoption{edge label};
+      }
+    },
+    gray/.style={
+      draw=none,
+      color=gray
     }
-  },
-  gray/.style={
-    draw=none,
-    color=gray
-  }
-  [{Viruses}
-    [{$\cdot\cdot\cdot$}, gray
-      [{\textit{Orthomyxoviridae}},for tree={l sep= 2mm}
-        [{$\alpha$},for tree={l sep= 12mm}
-          [{A},for tree={l sep= 18mm}
-            [{H1N1}]
-            [{H3N2}]
+    [{Viruses}
+      [{$\cdot\cdot\cdot$}, gray
+        [{\textit{Orthomyxoviridae}},for tree={l sep= 2mm}
+          [{$\alpha$},for tree={l sep= 12mm}
+            [{A},for tree={l sep= 18mm}
+              [{H1N1}]
+              [{H3N2}]
+            ]
           ]
-        ]
-        [{$\beta$},for tree={l sep= 12mm}
-          [{B},for tree={l sep= 18mm}
-            [{Yamagata}]
-            [{...}, gray]
+          [{$\beta$},for tree={l sep= 12mm}
+            [{B},for tree={l sep= 18mm}
+              [{Yamagata}]
+              [{...}, gray]
+            ]
           ]
+          [{... (5 more)}, gray]
         ]
-        [{... (5 more)}, gray]
+        [{\textit{... (149 more)}}, gray, for tree={l sep= 2mm}]
       ]
-      [{\textit{... (149 more)}}, gray, for tree={l sep= 2mm}]
     ]
-  ]
-\end{forest}
+  \end{forest}
 
 \red{Recombination evo pathway. E.g. Avian H7N9 Flu CFR 15-60 \% but no H2H}
 
 
-    \subsubsection{Basics}
+  \subsection{Basics}
 
-      History diagram from \citep{alberts15}
+    History diagram from \citep{alberts15}
 
-      HA: epl
+    HA: epl
 
-      NA: expl
+    NA: expl
 
-      Phylo tree of A/H3N2 HA Volz+2013
+    Phylo tree of A/H3N2 HA Volz+2013
 
-    \subsubsection{Hemagglutination Inhibition Assay}
+  \subsection{Hemagglutination Inhibition Assay}
 
-      Short description
+    Short description
 
-      Hirst 1943
+    Hirst 1943
 
-      mention cartography from Smith+2004 (?)
+    mention cartography from Smith+2004 (?) 
 
 \section{Nextstrain} \label{nextstrain}
+
+  In February 2017, a research tool, consisting
 
   \subsection{Idea}
 
@@ -225,6 +273,7 @@ Taxonomy: & \hspace{18mm}Family\hspace{13mm} & Genus\hspace{3mm} & Species\hspac
   Veryasfsadffds interestidsfng! \gls{maths} \acrfull{gcd} sdfg \gls{latex}
 
 \clearpage
+
 
 \section{References, Acronyms, and Glossary}
 
