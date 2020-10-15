@@ -32,7 +32,7 @@
 \newcommand{\red}[1]{{\color{red}#1}}
 \newcommand{\gray}[1]{{\color{gray}#1}}
 
-
+\glsaddall
 
 \begin{document}
 
@@ -59,9 +59,7 @@
 
 \clearpage
 
-\section{Resumée}
-
-
+\section{Introduction}
 
   \subsection*{Old Introduction}
     \gray{
@@ -255,7 +253,26 @@
     ]
   \end{forest}
 
-\red{Recombination evo pathway. E.g. Avian H7N9 Flu CFR 15-60 \% but no H2H}
+  Where they come from (mention important pandemics).
+
+  INFLUVENNZA PICTURE
+
+  \subsection{Hemagglutination Inhibition Assay}
+
+    Hemagglutinin is the surface protein for entering host cells. It is intended to dock at the XXX receptor, but can also bind to red blood cell's YYY which is where it got its name from.
+
+    When a virus is added to blood serum, the virus and RBCs will form a matrix structure, the blood will agglutinate. This is particularly useful since it is an effect visible with bare eye.
+
+    In Hemagglutination Inhibition Assays, a third component is added: Antibodies to a particular influenza subtype that were incubated in for example eggs. These antibodies bind to the virus epitope sites, preventing the blood from coagulating. This process depends on the antibody concentration and how closely related they are
+
+    Hirst 1943
+
+    mention cartography from Smith+2004 (?) 
+
+  \subsection{What is special about influenza?}
+
+    It has a relatively high mutation rate (EXACT COMPARISON, PLOT?), that is X substitutions per kilo base per reproductory cycle or per year (distinguish here to evolutionary rate?). 
+    Recombination evo pathway. E.g. Avian H7N9 Flu CFR 15-60 \% but no H2H
 
 
   \subsection{Basics}
@@ -268,21 +285,22 @@
 
     Phylo tree of A/H3N2 HA Volz+2013
 
-  \subsection{Hemagglutination Inhibition Assay}
-
-    Short description
-
-    Hirst 1943
-
-    mention cartography from Smith+2004 (?) 
 
 \section{Nextstrain} \label{nextstrain}
 
-  In February 2017, a research tool, consisting
+  In 2016 ??? , a group of scientists from Fred Hutchinson Cancer Research Center and University of Basel started to build an open platform for sharing phylogenetic visualizations of spreading epidemics. Having realized that a limiting factor of phylodynamics is data availability, their intent was to make the sharing of genomic data easier for fellow scientists, and at the same time directly present the phylogenetic results to the scientific community and the public.
+
+  In February 2017 the team around nextstrain won the first \gls{openScience} prize for their work \cite{hudson17}.
+
+  While bringing the scientific community and the public closer together, the ingenuity of nextstrain can as well be found in another domain: The integration of the multiple scales of phylodynamic processes into one visualization. So far, evolution of the viral genome had been studied by looking at the phylogeny and epidemic spreading patterns were visualized for example with geographic maps of the affected regions. Nextstrain provides an integrated view through these two different windows being in sync, allowing for a picture much closer to the process found in nature.
+
+  The following section will give a short hands-on introduction to the platform and its most relevant features.
 
   \subsection{Idea}
 
   \subsection{Short Usage Instructions}
+
+
   \begin{figure}[h!]
     \makebox[\textwidth][c]{
     \includegraphics[width=1.2\textwidth]{linked/screen_red_boxes_next_flu_2y.pdf}}
@@ -320,7 +338,7 @@
 
 \section{Conclusion}
 
-  Veryasfsadffds interestidsfng! \gls{maths} \acrfull{gcd} sdfg \gls{latex}
+  Veryasfsadffds interestidsfng!
 
 \clearpage
 
