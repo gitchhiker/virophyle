@@ -51,7 +51,7 @@
     \item ... and hopefully end up with a sprawling interest in virus research!
   \end{itemize}
 
-  As the research on this vast field proved cumbersome due to many terms and definitions unfamiliar to a physics graduate, this write-up is augmented by a glossary and a list of acronyms, found at the very end.
+  As the research on this vast field proved cumbersome due to many terms and definitions unfamiliar to a physics graduate, this write-up comprises a glossary and a list of acronyms at the very end. Included terms are \textit{italicized}.
 
 \vfill
 
@@ -120,11 +120,11 @@
 
     \subsection{What is problematic when viruses evolve?}
 
-    Evade immune system. And even vaccines. Leads to a race and so called coevolution. Mention the Red Queen here.
+    Evade immune system. And even vaccines. Leads to a race and so called co-evolution. Mention the Red Queen here.
 
     But one big advantage: We can now (since when?) sequence the genetic material and through the statistical nature of its modifications (mutations) extract information from it.
 
-    Most importantly we can interrelate the different probes. Where we just had 100 people with same symptoms, we can now make precise statements about who probably got the virus from whom. With a certain uncertainity.
+    Most importantly we can interrelate the different probes. Where we just had 100 people with same symptoms, we can now make precise statements about who probably got the virus from whom. With a certain uncertainty.
 
     So how can we make sense of this?
 
@@ -140,23 +140,63 @@
 
   Picture of two different trees that explain three (or four?) different histories of a sequence.
 
-  Parsimony: Number of needed substitutions is to be reduced. This makes especially sense if single mutation probabilities are low. It is ockham's razor applied.
+  Parsimony: Number of needed substitutions is to be reduced. This makes especially sense if single mutation probabilities are low. It is Ockham's razor applied.
 
-  \textbf{Molecular clock}: If the substitution rate was constant over all sites of the genome, one would expect the stochastically occuring mutations to yield one constant mutation rate for the whole genome. In reality, this is a strong simplification and each site has their own mutation rate. This is due to different evolutionary pressure laying on each site.
+  \textbf{Molecular clock}: If the substitution rate was constant over all sites of the genome, one would expect the stochastically occurring mutations to yield one constant mutation rate for the whole genome. In reality, this is a strong simplification and each site has their own mutation rate. This is due to different evolutionary pressure laying on each site.
 
   Synonymous mutations are such that do \textit{not} alter the expressed amino acid. They leave the organism unchanged and are so to say just for our pleasure (??). Non-synonymous mutations change the amino acid and are therefore under selective pressure. That is: depending on whether they are beneficial or detrimental to the organism, they will establish in the population or vanish and be unlikely to show up in any probes. That is the nature of evolution, that---on large timescales---we only see in the data what is capable of surviving and reproducing.
 
-  Essentially the Wikipedia Article + Volz 2013 (TODO read)
+  \subsection{What defines a Phylogenetic Tree?}
 
-  \subsection{Different }
+  Topological construct: Vertices linked by edges. To begin with, lengths and shapes have no meaning, only connectedness is relevant.
 
-  \Gls{phylogenetics} is the
+  A construct of vertices and edges (called graph or network) that has no internal loops. Consequently, if you remove one edge of a tree, it decays into two disconnected graphs.
 
-  \subsection{How to Read a Phylogenetic Tree}
+  Vertices or nodes can be divided into external and internal, the external ones are sometimes called leaves.
+
+  Furthermore, trees are usually taken to be bifurcating, that is one internal vertex has exactly three edges. Trees that do not fullfill this criterion are called multifurcating or polytomous, which can then be looked at as a lack of resolution, as a multifurcating vertex can always be reduced to a set of bifurcating ones.
+
+  Now the idea is that you take a bunch of external nodes (sequences) and reconstruct their interrelatedness in form of such a tree by probabilistic considerations. This is called tree inference and more info can be found HERE.
+
+  In the next step, one would like to give the vertices an order, as in who are the descendants of whom. This is done by introducing a special vertex called root, which is then parent to all other vertices. Be it pointed out here, that it has nothing to do with time, so far we are talking only topology and hierarchy.
+
+  For N leaves there are $\frac{(2N - 3)!}{2^{N-2}(N-2)!}$ possible bifurcating rooted trees (Wikipedia).
+
+  \subsection{Visualization of especially sequence data?}
+
+  One dimension could be mutation events or time
+
+  The other has no meaning.
+
+  Radial trees are only a way of clamming more information into a 2D piece of paper, as opposed to Cartesian visualizations.
+
+  PICTURE?
+
+  \subsection{Phylodynamics and what we can read from a tree}
+
+  Phylodynamics---as opposed to phylogenetics---is not satisfied with a tree but also asks: What processes shape a viral phylogeny?
+
+  First: Data availability. As long as scientific field does not abound with data, or as data content is dominated by the means available to gather it, a phylogenetic tree will always rather be the skewed little window through which we look at a problem, than an accurate image of any of the processes below.
+
+  Second: Epidemiological processes. For example growth vs. constant population PICTURE.
+
+  Third: Immunological processes. For example imbalanced vs. balanced. Maybe HIV as a PICTURE here? Also included here: Evolutionary feedbacks.
+
+  Fourth: Host population structure.
+
+  Note, that we are increasingly adding information to the vertices, leaving the theoretical realm of tree construction and entering into the matter of interpreting trees that have been constructed by appropriate algorithms.
+
+  As a last note, the mapping between these processes and the observed ML tree is many-to-one REF VOLZ+2013, that is, there are usually many possible explanations for one observation, and phylodynamics deals with this interplay.
 
   \subsection{Recommended Material}
 
+  Good Phylogenetics page
 
+  Anders Gorm Petersen
+
+  Volz+2013
+
+  But---to continue our journey through phylodynamic methods---let us now take a closer look at one most interesting virus family, the influenza viruses.
 
 
 \section{Influenza}
