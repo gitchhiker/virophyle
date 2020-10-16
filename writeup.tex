@@ -19,6 +19,7 @@
 \usepackage{xspace}
 \usepackage{forest}
 \usepackage{hyperref}
+\usepackage{listing}
 
 \usepackage{graphicx}
 \usepackage{lmodern}
@@ -288,31 +289,71 @@
 
 \section{Nextstrain} \label{nextstrain}
 
-  In 2016 ??? , a group of scientists from Fred Hutchinson Cancer Research Center and University of Basel started to build an open platform for sharing phylogenetic visualizations of spreading epidemics. Having realized that a limiting factor of phylodynamics is data availability, their intent was to make the sharing of genomic data easier for fellow scientists, and at the same time directly present the phylogenetic results to the scientific community and the public.
+  In 2015, a group of scientists from Fred Hutchinson Cancer Research Center and University of Basel published a web tool to track and visualize the evolution of influenza viruses. Under the name \textit{nextflu}, they had automatized sequence alignment, tree inference and visualization into two data processing pipelines, allowing for a quick analysis of the genomic data at hand \citep{neherBedford15a}.
 
-  In February 2017 the team around nextstrain won the first \gls{openScience} prize for their work \cite{hudson17}.
+  Shortly thereafter, phylodynamic analyses of other viruses like \glsdisp{zika}{zika} and \glsdisp{ebola}{ebola} were included in the platform, now running under the name nextstrain.
 
-  While bringing the scientific community and the public closer together, the ingenuity of nextstrain can as well be found in another domain: The integration of the multiple scales of phylodynamic processes into one visualization. So far, evolution of the viral genome had been studied by looking at the phylogeny and epidemic spreading patterns were visualized for example with geographic maps of the affected regions. Nextstrain provides an integrated view through these two different windows being in sync, allowing for a picture much closer to the process found in nature.
+  Realizing that a limiting factor of phylodynamics is data availability, the aim was to make the sharing of sequence data and phylodynamic analyses easier between scientists. At the same time nextstrain allowed to directly present the phylogenetic results to the scientific community and the public.
+
+  In February 2017 the team around nextstrain won the first \gls{openScience} prize for their work \citep{hudson17}.
+
+  While bringing the scientific community and the public closer together, the ingenuity of nextstrain can as well be found in another domain: The integration of the multiple scales of phylodynamic processes into one visualization. So far, evolution of the viral genome had been studied by looking at the phylogeny while epidemic spreading patterns were visualized for example with geographic maps of the affected regions. Nextstrain provides an integrated view through these two different windows being in sync, allowing for a picture much closer to the process found in nature.
 
   The following section will give a short hands-on introduction to the platform and its most relevant features.
 
-  \subsection{Idea}
+  \subsection{Using nextstrain}
 
-  \subsection{Short Usage Instructions}
+  On \textit{nextstrain.org}, the visitor can first chose between a wide range of available pathogens. Beside viruses, even a bacterial disease---tuberculosis---can be selected. Contributions by external scientific groups are included further down the main page.
 
+  \begin{figure}[h!]
+    \makebox[\textwidth][c]{
+    \includegraphics[width=.8\textwidth]{linked/NextstrainPathogens.pdf}}
+    \caption{Augmented pathogen visualization, modified from \href{https://nextstrain.org}{\textbf{nextstrain.org}}, \cite{leeMoncla+20}}
+  \end{figure}
+
+  Selecting for instance seasonal flu, the visitor gets to what we will call the \textit{phylodynamic dashboard}. In the following, we will go through its most basic features and discuss some of its possible uses.
+
+  The dashboard consists of primarily a phylogeny and a geographic map, as well as a diversity and frequency panel further down.
 
   \begin{figure}[h!]
     \makebox[\textwidth][c]{
     \includegraphics[width=1.2\textwidth]{linked/screen_red_boxes_next_flu_2y.pdf}}
     \caption{\footnotesize Taken from the \href{https://nextstrain.org/flu/seasonal/h3n2/ha/2y?p=grid}{2 year seasonal H3N2 flu HA dataset visualization} on \href{https://nextstrain.org}{\textbf{nextstrain.org}}, \cite{leeMoncla+20}}
   \end{figure}
+  
+  The \textbf{Phylogeny} may be considered the core of the visualization. It displays sequences as colored dots, showing the collected meta data when hovering or clicking. The branches are of the inferred \acrshort{ml} tree, and come with a confidence interval that is displayed when hovering. The black crosses are exclusive to the influenza datasets, they mark the location of a vaccine strain.
+
+  The \textbf{Geographic Map}, shows the same data as the phylogeny, but mapped out according to the sequencing location (from meta data). The coloring is the same as the phylogeny. Some datasets display transmission lines between the geographic regions, these are a reflection of the branches of the phylogeny.
+
+  The \textbf{play button} allows to watch the disease unfolding as an animation, where the phylogeny and the geography is in sync.
+
+  Below, the \textbf{Diversity Panel} shows the sequence under investigation, with an identification of specific regions such as the signal peptide. The histogram displays either the number of mutation events or the entropy of each site in the genome. Entropy is calculated from the presence of different mutations $ S = -\sum_{\text{mutations } i}(p_i \log(p_i))$, where $p_i$ is the probability that a randomly picked sequence shows the mutation $i$ at the site, such that exactly two equally abundant mutations would yield an entropy of about $.69$. The histogram can be binned by \acrfull{aa} or by \acrfull{nt}. If a genome site is clicked, the entire dashboard coloring will be set to discriminate between different mutations of that very position.
+
+  The \textbf{Frequency Panel} displays the abundance of the selected variation over the time period of the dataset and a projection beyond. Here, \textit{``selected variation''} refers to any information that the data can be colored by, be it the strain (as is the default) or a specific mutation or anything else. For example when coloring by a high entropy site, the frequency panel should display at least two abundant different colors. The \textbf{Projection} of the frequencies is a feature specific to the influenza dataset, and its scientific origin will be discussed in section \ref{prediction}.
+
+  In the leftmost \textbf{navigation bar}, the main visualization adjustments can be made. Primarily, the dataset can be narrowed down to a specific part of the genome, or to a time range over which the data was collected. The data usually originates from many laboratories throughout the world submitting their sequences
+
+
+
 
 
   \subsection{Example}
 
+  WILL I DO THIS?
+
   \subsection{Recommended Material}
 
-\section{Mapping Influenza Evolution}
+    The platform is self-explanatory to some degree, but for a deeper introduction to the topic it provides plenty of material:
+\begin{itemize}
+  \item The Documentation and Help. It should answer the most frequent questions and it gives a detailed guide on how to build an entire phylodynamic analysis on your own machine with the pipelines \verb|augur| and \verb|auspice|.
+  \item The Discussion forum
+
+  \item Guide on Narratives
+\end{itemize}
+
+  The video series with Colin Megill
+
+\section{Mapping Influenza Evolution} \label{prediction}
 
   \subsection{Mapping Titer to Tree}
 
