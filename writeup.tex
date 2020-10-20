@@ -320,7 +320,7 @@
     \includegraphics[width=1.2\textwidth]{linked/screen_red_boxes_next_flu_2y.pdf}}
     \caption{\footnotesize Taken from the \href{https://nextstrain.org/flu/seasonal/h3n2/ha/2y?p=grid}{2 year seasonal H3N2 flu HA dataset visualization} on \href{https://nextstrain.org}{\textbf{nextstrain.org}}, \cite{leeMoncla+20}}
   \end{figure}
-  
+
   The \textbf{Phylogeny} may be considered the core of the visualization. It displays sequences as colored dots, showing the collected meta data when hovering or clicking. The branches are of the inferred \acrshort{ml} tree, and come with a confidence interval that is displayed when hovering. The black crosses are exclusive to the influenza datasets, they mark the location of a vaccine strain.
 
   The \textbf{Geographic Map}, shows the same data as the phylogeny, but mapped out according to the sequencing location (from meta data). The coloring is the same as the phylogeny. Some datasets display transmission lines between the geographic regions, these are a reflection of the branches of the phylogeny.
@@ -355,7 +355,41 @@
 
 \section{Mapping Influenza Evolution} \label{prediction}
 
+  In this section, we will look at how the prediction of future influenza strain prevalence has been done by \cite{neherBedford+16}. We will begin by mapping antigenicity to the phylogeny and then end in a statement about the correlation between recent antigenic advancement and the probability to reach certain frequency thresholds.
+
   \subsection{Mapping Titer to Tree}
+
+    The dataset that we start with will have to contain the following data:
+    \begin{itemize}
+      \item The set of sequences of the viral genome (with the given meta data)
+      \item The set of antiviral vaccine strains
+      \item A table of \glspl{titer} values between antiviral and viral strains
+      \item The inferred phylogenetic tree of the viral sequences (can be produced with nextstrain's pipeline \verb|augur| or other \textit{off the shelf} tree inference algorithms)
+    \end{itemize}
+
+    To start off with, we want to normalize the \glspl{titer} to the surplus of twofold dilutions to the reference virus. Such that if $T_{a\beta}$ is the titer between a virus $a$ and an anti virus $\beta$, we have
+
+    \begin{align}
+      H_{a\beta} = \log_2T_{b\beta} - \log_2T_{a\beta}
+    \end{align}
+
+    where $b$ is the virus that anti virus $\beta$ was intended for, that is $T_{b\beta}$ is the so called \textit{homologous} titer.
+
+    Now we want to model this data table as an outcome of one of the two following processes:
+    \begin{itemize}
+      \item the bifurcation of the tree into ever smaller branches
+      \item the substitution of amino acids that can be read directly from the genome.
+    \end{itemize}
+
+    For that, we set up two different models, one \textit{tree model} that assigns an antigenic change $d_i$ to each internal node (bifurcation) of the tree, and another model called \textit{substitution} model, that lets each \textit{non-silent} substitution in the sequence produce an antigenicity change $d_i$.
+
+    For the \textit{modeled} standardized titers we write down
+    \begin{align}
+      \hat{H}_{a\beta} = v_a + p_\beta + \sum_{i\in(a...b)}d_i
+    \end{align}
+
+    where the hat means ``modeled'', $v_a$ refer
+
 
     Minimizing a Cost function
 
